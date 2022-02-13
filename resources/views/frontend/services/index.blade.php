@@ -1,156 +1,67 @@
 @include('layouts.header')
-    @include('frontend.layouts.navbar')
-   <!--  wrapper  -->
-<div id="wrapper">
-  <!-- Content-->
-  <div class="content">
-    <!--  section  -->
-    <section class="parallax-section hidden-section single-par2" data-scrollax-parent="true">
-      <div class="bg-wrap bg-parallax-wrap-gradien">
-        <div class="bg par-elem" data-bg="../bpm-content/uploads/2021/05/4-1.jpg" data-scrollax="properties: { translateY: '30%' }"></div>
-      </div>
-      <div class="container idx-5">
-        <div class="container-inner">
-          <div class="section-title center-align big-title">
-            <h2 class="post-head-title"><span>Our Services</span></h2>
-            Kindly grasp a feel of our professional Services.
-          </div>
-          <div class="scroll-down-wrap">
-            <div class="mousey">
-              <div class="scroller"></div>
-            </div>
-            <span>Scroll Down To Discover</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--  section  end-->
-    <div class="breadcrumbs-wrapper fw-breadcrumbs sp-brd fl-wrap">
-      <div class="container">
-        <div class="container-inner flex-items-center jtf-space-between flw-wrap">
-          <div class="breadcrumbs-list "><a class="breadcrumb-link breadcrumb-home" href="#" title="Home">Home</a><span class="breadcrumb-current breadcrumb-item-page-2321" title="Our Pricing Plans">Our Services</span></div>
-          <div class="share-holder hid-share">
-            <a href="#" class="share-btn showshare"><i class="fas fa-share-alt"></i>Share</a>
-            <div class="share-container isShare" data-share="facebook, pinterest, googleplus, twitter, linkedin"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <article id="post-2321" class="post-2321 page type-page status-publish hentry">
-      <div class="entry-content clearfix">
-        <div data-elementor-type="wp-post" data-elementor-id="" class="elementor " data-elementor-settings="">
-          <div class="elementor-section-wrap">
-            <section class="elementor-section elementor-top-section elementor-element elementor-element-ff816c3 small-padding gray-bg elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ff816c3" data-element_type="section">
-              <div class="elementor-container elementor-column-gap-no">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-956c8a2" data-id="956c8a2" data-element_type="column">
-                  <div class="elementor-widget-wrap elementor-element-populated">
-                    <div class="elementor-element elementor-element-d331654 elementor-widget elementor-widget-membership_plans" data-id="d331654" data-element_type="widget" data-widget_type="membership_plans.default">
-                      <div class="elementor-widget-container">
-                        <div class="membership-plans-wrap cthiso-isotope-wrapper curr-pos-left four-cols">
-                          <div class="pricing-top dis-flex-wrap-center jtf-space-between">
-                            <div class="pricing-switcher-header">Our Services listing:</div>
-                            <div class="pricing-switcher">
-                              <div class="fieldset color-bg"> <input type="radio" name="duration-1" id="" class="tariff-toggle" checked="" value="monthly"> <label for="monthly61b4b52df295a">Our Services</label>  <label for="yearly61b4b52df295c">BPM Special</label> <span class="switch"></span></div>
-                            </div>
-                          </div>
-                          <div class="cthiso-big-pad cthiso-three-cols clearfix cthiso-flex" style="align-text: center;">
-                            <!-- plan-item -->
-                            <div class="pricing-wrap cthiso-item">
-                              <div class="pricing-column">
-                                <div class="pricing-header color-gradient-bg">
-                                  <h3 class="pricing-item-title"><span>01.</span>BPM Construction</h3>
-                                  <div class="price-num price-item fl-wrap">
-                                    <div class="price-num-item"><span class="mouth-cont">Construction</span></div>
-                                    <div class="price-num-desc"><span class="mouth-cont"></div>
-                                  </div>
-                                  <p class="pricing-item-subtitle">Contruction in its diversity.</p>
-                                  <span class="year-sale"></span>
-                                </div>
-                                <div class="pricing-content">
-                                  <div class="price-desc">
-                                    <ul class="no-list-style">
-                                      <li>Road Construction</li>
-                                      <li class="no-list-style">Bridges Construction</li>
-                                      <li class="no-list-style">Building Construction</li>
-                                      <li class="no-list-style">Sky-scrapers</li>
-                                    </ul>
-                                  </div>
-                                
-                                </div>
-                              </div>
-                            </div>
-                            <!-- plan-item end  --> 
-                             <!-- plan-item -->
-                            <div class="pricing-wrap cthiso-item">
-                              <div class="pricing-column">
-                                <div class="pricing-header blue-gradient-bg">
-                                  <h3 class="pricing-item-title"><span>02.</span>BPM Real Estate</h3>
-                                  <div class="price-num price-item fl-wrap">
-                                    <div class="price-num-item"><span class="mouth-cont">Real Estate</span>
-                                    </div>
-                                    <div class="price-num-desc"></div>
-                                  </div>
-                                  <p class="pricing-item-subtitle">Years Experience in the Real Estate Bussiness</p>
-                                </div>
-                                <div class="pricing-content">
-                                  <div class="price-desc">
-                                    <ul>
-                                      <li>Estate Valuation</li>
-                                      <li>Sales</li>
-                                      <li>Leasing</li>
-                                      <li>Management</li>
-                                    </ul>
-                                  </div>
-                                 
-                                </div>
-                              </div>
-                            </div>
-                            <!-- plan-item end  --> <!-- plan-item -->
-                            <div class="pricing-wrap cthiso-item">
-                              <div class="pricing-column">
-                                <div class="pricing-header blue-gradient-bg">
-                                  <h3 class="pricing-item-title"><span>03.</span>BMP Consultancy</h3>
-                                  <div class="price-num price-item fl-wrap">
-                                    <div class="price-num-item"><span class="mouth-cont">Consultancy</span><span class="year-cont"><span class="curen">€</span>1,336.44</span></div>
-                                    <div class="price-num-desc"><span class="mouth-cont"></div>
-                                  </div>
-                                  <p class="pricing-item-subtitle">Professional Consultation according to your goals.</p>
-                                  <span class="year-sale">-10%</span>
-                                </div>
-                                <div class="pricing-content">
-                                  <div class="price-desc">
-                                    <ul>
-                                      <li>Investment</li>
-                                      <li>Project</li>
-                                      <li>Economic</li>
-                                      <li>Geographics</li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <!-- plan-item end  -->
-                          </div>
-                          <!-- end .pricing-wrap -->
-                        </div>
-                      </div>
+    <div class="position-relative">
+        @include('frontend.layouts.navbar')
+        <section class="services-banner position-relative">
+            <div class="container">
+                <div class="row pb-4">
+                    <div class="col-12 col-lg-6">
+                        <h1 class="text-white mb-0">Our Services</h1>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </section>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-      <!-- .entry-content -->
-    </article>
-    <!-- #post-## -->
-  </div>
-  <!-- Content end -->
-</div>
-<!-- wrapper end -->
-<div class="clearfix"></div>
-
-	@include('frontend.layouts.bottom')
+            </div>
+        </section>
+        <section style="padding: 100px 0;">
+            <div class="container">
+                <div class="row justify-content-center text-lg-center">
+                    <div class="col-12 col-md-8 col-lg-6 mb-5">
+                        <h1 class="text-darkblue">Our Services</h1>
+                        <p class="text-dark">We offer a wide range of services to our clients which can be classified into two; strategic internet and software solutions.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Entreprise Solutions Development</h3>
+                        <p class="text-dark">Enterprise solutions software is going to aid in reception, keeping a stock inventory, keeping accounts, calculating tax and measuring growth percentage amongst many other services.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Domain Name And Hosting</h3>
+                        <p class="text-dark">Register your domain name for your websites and purchase your hosting services with us and get reliable, fast and steady websites.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">My Hotel Pro</h3>
+                        <p class="text-dark">MyHotelPRO helps keep stock of inventory, manages room bookings, keep track of available rooms, manage the guest list, and keep track of hotel staff and attendants and record finances.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Website Design</h3>
+                        <p class="text-dark">We design both static and dynamic websites, with a beautiful layout, highly secured with a good user interface (UI) experience, customized to be responsive across all devices. Our websites are modern with a good aesthetic feel, to help you promote your business and/or personal brand.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Software Programming</h3>
+                        <p class="text-dark">Our team of competent software developers, highly skilled in many modern computer languages like Python, C, C++, Java, JavaScript, PHP, Lisp, Perl etc. will help you develop software and customize them for your needs.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Cybersecurity</h3>
+                        <p class="text-dark">We secure your websites and networks from viruses, malware and cybercriminals thus preventing loss of data and client information and in the case of attack, we can apply band-aids and also recover lost websites and stolen information from cybercriminals.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">CCTV Installation</h3>
+                        <p class="text-dark">Our surveillance system comes with cameras enabled with night vision, adjustable with good picture quality, rain resistant and can record captured images thus serving as a crime deterrent and can aid in identifying trespassers.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Mobile Application Development</h3>
+                        <p class="text-dark">Create engaging mobile applications optimized for both android and iOS platforms for your businesses. Our apps are easy to use with great UI, affordable, with a unique design, fast and responsive, and adaptive to customer needs.</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">Wireless Internet Services Provisioning</h3>
+                        <p class="text-dark">We provide high speed, reliable and unlimited internet service to our customers</p>
+                    </div>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <h3 class="text-darkblue">E-commerce Development</h3>
+                        <p class="text-dark">We are specialized in creating eCommerce websites that are secure, designed carefully with easy navigation to ensure that customers find what they seek in the shortest amount of time possible thereby reducing the number of lost visitors; well branded with easy checkout; showcases the most popular products and with an effective site-wide search to aid customers in finding products.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @include('frontend.layouts.bottom')
+    </div>
 @include('layouts.footer')

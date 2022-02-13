@@ -25,7 +25,7 @@ class SignupController extends Controller
      */
     public function index()
     {
-        return view('frontend.signup.index')->with(['title' => 'Signup | Best Property Market']);
+        return view('frontend.signup.index')->with(['title' => 'Signup | T-Wireless']);
     }
 
     /**

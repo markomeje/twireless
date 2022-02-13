@@ -2,25 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Validation\ValidationException;
 use Validator;
 
 class LoginController extends Controller
 {
-
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
 
      /**
      * Create a new controller instance.
@@ -37,7 +23,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('frontend.login.index')->with(['title' => 'Login | Best Property Market']);
+        return view('frontend.login.index')->with(['title' => 'Login | T-Wireless']);
     }
 
     /**

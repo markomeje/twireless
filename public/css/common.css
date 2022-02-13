@@ -13,6 +13,10 @@
     color: var(--romansilver);
 }
 
+.text-shadow-dark {
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
 .disable { 
     opacity: .4;
     cursor: default !important;

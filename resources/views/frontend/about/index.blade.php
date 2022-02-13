@@ -1,33 +1,58 @@
 @include('layouts.header')
-    @include('frontend.layouts.navbar')
-    <div class="bg-main-ash min-vh-100">
-        <section class="about-banner">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-12 col-lg-10">
-                        <h1 class="text-white">About Us</h1>
-                        <div class="text-white">We are the Best Property Market, strategically positioned to solve the biggest problem when it comes to property transactions in the global real estate industry. Under this governing umbrella we offer property listings, property management, sales and marketing, brokerage, and other professional services.</div>
+    <div class="position-relative">
+        @include('frontend.layouts.navbar')
+        <section class="position-relative about-banner border-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <h1 class="text-white mb-0">About Us</h1>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="mission-vision position-relative">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 col-md-7 mb-4">
-                        <h1 class="text-white">Our Vision</h1>
-                        <div class="text-white">Our vision is to become the number one online market place for property transactions and be recognized among the top real estate service providers in the global market.</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-7 mb-4">
-                        <h1 class="text-white">Our Mission</h1>
-                        <div class="text-white mb-4">Our mission is to provide an easy, fast, reliable and secure process as it concerns property transactions in the global real estate industry. Over time, property transactions have been marred with frustrations that accompany buying, listing, selling and renting of properties.</div>
-                        <div class="text-white">Our mission is to make property transactions hurdle free, transparent and as easy as the tap of a button. With the smart combination of data and analytics, alongside a team of trained professionals, coupled with our solid 25 years experience in the industry, today we provide the most seamless approach to property transactions in global market.</div>
+        <section class="bg-alice" style="padding: 100px 0;">
+            <div class=" who-we-are">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-4">
+                            <h1 class="text-darkblue">Who We Are</h1>
+                            <p class="text-dark">T-Wireless is a brand of TAPRAP Nigeria limited, a reliable and innovative information technology institution that provides a cutting edge web and internet solution to all.</p>
+
+                            <p class="text-dark">At T-Wireless we better lives with our fast, reliable unlimited Wi-Fi internet connectivity to large organizations, home, SMEs and individuals. We provide unlimited internet service in Nigeria and deliver 24/7 support service and fastest installation link in the industry.</p>
+
+                            <p class="text-dark">T-Wireless is a leading broadband communication service provider to corporate organizations in Nigeria, where we have our point-of-presence and complement of technical support staff.</p>
+
+                            <div class="mt-2">
+                                <a href="/request" class="btn btn-lg px-5 bg-primary text-white rounded-pill">Make Request</a>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <figure>
+                                <img src="/images/banners/family.jpg" alt="T-Wireless" class="img-fluid">
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+        <section style="padding: 100px 0 80px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-4 mb-4">
+                        <h1 class="text-darkblue">Our Vision</h1>
+                        <p class="text-dark">A first class providers of communication services to our customers for an inventive lifestyle.</p>
+                    </div>
+                    <div class="col-12 col-lg-4 mb-4">
+                        <h1 class="text-darkblue">Our Mission</h1>
+                        <p>To make lives better as we deliver fast and reliable internet connectivity to people wherever they desire.</p>
+                    </div>
+                    <div class="col-12 col-lg-4 mb-4">
+                        <h1 class="text-darkblue">Our Core Values</h1>
+                        <p class="text-dark">Customer Delight, Teamwork, Consistency, Leadership, Reliability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @include('frontend.layouts.bottom')
     </div>
-    @include('frontend.layouts.bottom')
 @include('layouts.footer')

@@ -1,66 +1,96 @@
 @include('layouts.header')
-	<div class="signup-banner min-vh-100">
-		<div class="container">
-			<div class="row justify-content-center align-items-center">
-				<div class="col-12 col-md-8 col-lg-6 mb-4">
-					<div class="d-flex justify-content-md-center justify-content-sm-start">
-						<div class="mb-3" style="width: 220px; height: 49px;">
-							<a href="{{ route('home') }}" class="">
-								<img src="/images/logos/logo.png" class="img-fluid w-100">
-							</a>
+	<div class="position-relative">
+		@include('frontend.layouts.navbar')
+		<section class="section-banner bg-alice position-relative">
+			<div class="container">
+				<div class="row">
+					<div class="col-12 col-lg-6">
+						<div class="">
+							<h1 class="text-darkblue">Signup Here</h1>
 						</div>
 					</div>
-					<div class="row justify-content-center align-items-center">
-						<div class="col-12 col-md-9 col-lg-10">
-							<p class="mb-4 text-main-dark text-md-center mx-lg-3 text-sm-left">Get started with our global properties listing platform. It's free.</p>
-						</div>
-					</div>
-					<section class="">
-						<form action="javascript:;" method="post" class="signup-form mb-4 p-4 border card-raduis" data-action="{{ route('signup.process') }}" autocomplete="off">
-						    <div class="form-row">
-						     	<div class="form-group col-md-6">
-						            <label class="text-muted">Email</label>
-							        <input type="email" name="email" class="form-control email" placeholder="e.g., email@you.com">
-						            <small class="error email-error text-danger"></small>
-						        </div>
-						        <div class="form-group col-md-6">
-						            <label class="text-muted">Phone</label>
-						            <input type="number" name="phone" class="form-control phone" placeholder="e.g., +44062972785">
-						            <small class="error phone-error text-danger"></small>
-						        </div>
-						    </div>
-						    <div class="form-row">
-						        <div class="form-group col-md-6">
-						            <label class="text-muted">Password</label>
-						            <input type="password" name="password" class="form-control password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-						            <small class="error password-error text-danger"></small>
-						        </div>
-						        <div class="form-group col-md-6">
-						            <label class="text-muted">Retype Password</label>
-						            <input type="password" name="retype" class="form-control retype" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-						            <small class="error retype-error text-danger"></small>
-						        </div>
-						    </div>
-						    <div class="form-group">
-						        <div class="custom-control custom-switch">
-						            <input type="checkbox" value="on" name="agree" class="custom-control-input agree" id="i-agree">
-						            <label class="custom-control-label text-main-dark cursor-pointer" for="i-agree">Agree To Our <a href="javascript:;" class="text-primary">Terms and Conditions?</a></label>
-						        </div>
-						        <small class="error agree-error text-danger"></small>
-						    </div>
-						    <button type="submit" class="btn btn-lg icon-raduis bg-theme-color btn-block text-white signup-button mb-4">
-						        <img src="/images/spinner.svg" class="mr-2 d-none signup-spinner mb-1">
-						        Signup
-						    </button>
-						    <div class="alert px-3 signup-message d-none mb-3"></div>
-						    <p class="text-main-dark mb-0">
-								Already have an account? <a class="text-primary font-weight-bolder" href="{{ route('login') }}">Login</a>
-							</p>
-						</form>
-					</section>
 				</div>
 			</div>
-		</div>	
+		</section>
+		<section class="" style="padding: 90px 0 100px;">
+			<div class="container">
+				<p class="text-romansilver">Please Fill In All Fields.</p>
+				<div class="row">
+					<div class="col-12">
+						<form action="javascript:;" method="post" class="signup-form p-4 rounded border" data-action="/signup" autocomplete="off">
+							<div class="form-row">
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="text-romansilver mb-2">Fullname</label>
+									<input type="text" name="fullname" class="form-control fullname" placeholder="e.g., John Kelly">
+									<small class="error fullname-error text-danger"></small>
+								</div>
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="text-romansilver mb-2">State</label>
+									<select class="custom-select form-control state" name="state">
+										<option value="">Select State</option>
+										<?php if(empty($states)): ?>
+										   <option value="">No state</option>
+										<?php else: ?>
+											<?php foreach($states as $state): ?>
+												<?php $state = empty($state->statename) ? 'Enugu' : $state->statename; ?>
+												<option value="<?= $state; ?>">
+													<?= ucfirst($state); ?>
+												</option>
+											<?php endforeach; ?>
+										<?php endif; ?>
+									</select>
+									<small class="error state-error text-danger"></small>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="text-romansilver mb-2">Email</label>
+									<input type="email" name="email" class="form-control email" placeholder="e.g., john@doe.com">
+									<small class="error email-error text-danger"></small>
+								</div>
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="text-romansilver mb-2">Phone</label>
+									<input type="text" name="phone" class="form-control phone" placeholder="e.g., 09011112113">
+									<small class="error phone-error text-danger"></small>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="mb-2 text-romansilver">Password
+									</label>
+									<input type="password" name="password" class="form-control password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+									<small class="error password-error text-danger"></small>
+								</div>
+								<div class="form-group input-group-lg col-md-6">
+									<label for="" class="mb-2 text-romansilver">Confirm Password
+									</label>
+									<input type="password" name="confirmpassword" class="form-control confirmpassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+									<small class="error confirmpassword-error text-danger"></small>
+								</div>
+							</div>
+							<div class="mb-3">
+								<label for="" class="mb-2 text-romansilver">Address
+									</label>
+								<textarea class="form-control address" name="address" rows="2" placeholder="Enter Address"></textarea>
+								<small class="error address-error text-danger"></small>
+							</div>
+							<div class="mb-3">
+								<div class="custom-control custom-switch">
+								  	<input type="checkbox" class="custom-control-input agree" name="agree" id="agree">
+								  	<label class="custom-control-label" for="agree"><a href="/terms" target="_blank">Agree to Terms and Conditions?</a></label>
+								</div>
+								<small class="error agree-error text-danger"></small>
+							</div>
+							<button type="submit" class="btn mt-2 btn-lg border-0 bg-primary px-5 rounded-pill text-white signup-button">
+								<img src="/images/svgs/spinner.svg" class="mr-2 d-none signup-spinner mb-1">
+								Signup
+							</button>
+							<div class="alert mt-4 px-3 signup-message d-none"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		@include('frontend.layouts.bottom')
 	</div>
-
 @include('layouts.footer')

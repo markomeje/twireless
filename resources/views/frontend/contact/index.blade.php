@@ -1,67 +1,75 @@
 @include('layouts.header')
-    @include('frontend.layouts.navbar')
     <div class="position-relative">
-    	<section class="contact-banner">
+		@include('frontend.layouts.navbar')
+		<section class="pricing-banner position-relative">
 			<div class="container">
-				<h1 class="text-theme-color mb-4">Send a <span class="text-white">Message</span></h1>
-				<div class="row">
-					<div class="col-12 col-lg-8 mb-4">
-						<form class="contact-form p-4 rounded border" action="javascript:;" method="post">
-							<div class="form-row">
-						        <div class="form-group col-md-6">
-						            <label class="text-white">Fullname</label>
-							        <input type="text" name="fullname" class="form-control fullname" placeholder="Enter email or phone">
-						            <small class="error fullname-error text-danger"></small>
-						        </div>
-						        <div class="form-group col-md-6">
-						            <label class="text-white">Designation</label>
-						            <select class="custom-select form-control type">
-						            	<option value="">Select Designation</option>
-						            	<option value="Company">Company</option>
-						            	<option value="Individual">Individual</option>
-						            </select>
-						            <small class="error password-error text-danger"></small>
-						        </div>
-						    </div>
-						    <div class="form-row">
-						     	<div class="form-group col-md-6">
-						            <label class="text-white">Email</label>
-							        <input type="email" name="email" class="form-control email" placeholder="e.g., email@you.com">
-						            <small class="error email-error text-danger"></small>
-						        </div>
-						        <div class="form-group col-md-6">
-						            <label class="text-white">Phone</label>
-						            <input type="number" name="phone" class="form-control phone" placeholder="e.g., 09062972785">
-						            <small class="error phone-error text-danger"></small>
-						        </div>
-						    </div>
-						    <div class="mb-4">
-						    	<label class="text-white">Message</label>
-						    	<textarea class="form-control message" name="message" rows="4" placeholder="Enter message here"></textarea>
-						    	<small class="error message-error text-danger"></small>
-						    </div>
-						    <button type="submit" class="btn btn-lg bg-theme-color icon-raduis btn-block text-white contact-form-button mb-4">
-						        <img src="/images/spinner.svg" class="mr-2 d-none contact-form-spinner mb-1">
-						        Send
-						    </button>
-						    <div class="alert px-3 contact-form-message d-none mb-3"></div>
-						</form>
-					</div>
-					<div class="col-12 col-lg-4">
-						<h3 class="text-white">Office Addresses</h3>
-						<div class="mb-4">
-							<p class="text-theme-color">Head Office</p>
-							<div class="text-white">Suit E01b, The statement Complex, Plot 1002, First Avenue, CBD, Abuja.</div>
-						</div>
-						<div class="mb-4">
-							<p class="text-theme-color">Branch Office</p>
-							<div class="text-white">Geohomes House, 26 Moorehouse Street, Ogui Enugu, Enugu State.</div>
-						</div>
-						
+				<div class="row align-items-center">
+					<div class="col-12 col-lg-6">
+						<h1 class="text-white">
+							<span class="text-pink">Contact</span> Here
+						</h1>
+						<p class="text-white mb-2">
+							Suite C9B Elim Plaza Ebeano Tunnel Enugu.
+						</p>
+						<p class="mb-0">
+							<a href="tel:+2349070133000" class="text-white">Call +2349070133000</a>
+						</p>
 					</div>
 				</div>
 			</div>
 		</section>
-    </div>
-	@include('frontend.layouts.bottom')
+		<section class="position-relative" style="padding: 80px 0 100px;">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<p class="text-romansilver">Please fill in all fields.</p>
+						<div class="card shadow-sm bg-white">
+							<div class="card-body">
+								<form method="post" action="javascript:;" class="contact-form" data-action="/contact/process" autocomplete="off">
+				                    <div class="d-flex justify-content-between pb-2 mb-3 border-bottom">
+				                        <p class="modal-title text-romansilver mb-0">Send Message</p>
+				                    </div>
+				                    <div class="form-row">
+				                        <div class="form-group col-md-6 input-group-lg">
+				                            <label class="text-romansilver mb-2">Firstname</label>
+				                            <input type="text" name="firstname" class="form-control bg-alabaster firstname" placeholder="e.g., Akan">
+				                            <small class="error firstname-error text-danger"></small>
+				                        </div>
+										<div class="form-group col-md-6 input-group-lg">
+											<label class="text-romansilver mb-2">Lastname</label>
+											<input type="text" name="lastname" class="form-control bg-alabaster lastname" placeholder="e.g., John">
+											<small class="error lastname-error text-danger"></small>
+										</div>
+				                    </div>
+				                    <div class="form-row">
+				                        <div class="form-group col-md-6 input-group-lg">
+				                            <label class="text-romansilver mb-2">Email</label>
+				                            <input type="email" name="email" class="form-control bg-alabaster email" placeholder="e.g., akan@john.com">
+				                            <small class="error email-error text-danger"></small>
+				                        </div>
+										<div class="form-group col-md-6 input-group-lg">
+											<label class="text-romansilver mb-2">Phone Number</label>
+											<input type="number" name="phone" class="form-control bg-alabaster phone" placeholder="e.g., 09065675430">
+											<small class="error phone-error text-danger"></small>
+										</div>
+				                    </div>
+									<div class="mb-4">
+										<label class="text-romansilver mb-2">Message</label>
+										<textarea class="form-control bg-alabaster message" name="message" rows="5" placeholder="Enter your message here"></textarea>
+										<small class="error message-error text-danger"></small>
+									</div>
+				                    <div class="alert mb-3 contact-message d-none"></div>
+				                    <button type="submit" class="btn px-5 btn-lg rounded-pill bg-primary text-white contact-button px-5">
+			                            <img src="/images/svgs/spinner.svg" class="mr-2 d-none contact-spinner mb-1">
+			                            Submit
+			                        </button>
+					            </form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		@include('frontend.layouts.bottom')
+	</div>
 @include('layouts.footer')

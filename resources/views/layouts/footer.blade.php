@@ -22,6 +22,8 @@
     <script src="/js/subscriptions.js" type="text/javascript"></script>
     <!-- request JS -->
     <script src="/js/request.js" type="text/javascript"></script>
-    <!-- Chat Bot -->
-    <script src="//code.tidio.co/3baertlnq3eijorrwijclqudfvmwbwle.js" async></script>
+    @if(env('APP_ENV') !== 'local')
+        <!-- Chat Bot -->
+        <script src="//code.tidio.co/3baertlnq3eijorrwijclqudfvmwbwle.js" async></script>
+    @endif
 </html>

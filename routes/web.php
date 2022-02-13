@@ -46,7 +46,8 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
         Route::get('/thanks', [\App\Http\Controllers\ContactController::class, 'thanks'])->name('contact.thanks');
     });
 
-    Route::get('/services', [ServicesController::class, 'index'])->name('services');
+    Route::get('/services', [\App\Http\Controllers\ServicesController::class, 'index'])->name('services');
+    Route::get('/pricing', [\App\Http\Controllers\PricingController::class, 'index'])->name('pricing');
 
     Route::prefix('agents')->group(function () {
         Route::get('/', [AgentsController::class, 'index'])->name('agents');

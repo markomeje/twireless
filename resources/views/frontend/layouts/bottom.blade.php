@@ -1,4 +1,59 @@
-<section class="contact-box py-5 mb-5" style="background-color: #0669b1;">
+<section style="padding: 0 0 100px;">
+	<div class="container">
+		<div>
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-4">
+					<h3 class="text-darkblue text-center mb-4">Some of our Clients and Partners</h3>
+				</div>
+			</div>
+			<div class="">
+				<div class="row align-items-center">
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/hotr.png" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<div class="bg-dark">
+							<img src="/images/clients/wicrypt.png" class="img-fluid mb-2">
+						</div>
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/betking.jpeg" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/rewind.jpeg" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/enuguwifi.svg" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/polomall.png" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<div class="bg-dark">
+							<img src="/images/clients/urbanradio.svg" class="img-fluid mb-2">
+						</div>
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/enugusme.png" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/galaxybackbone.jpg" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/ejalet.jpg" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/solidfm.png" class="img-fluid mb-2">
+					</div>
+					<div class="col-4 col-md-1">
+						<img src="/images/clients/mtn.png" class="img-fluid mb-2">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="contact-box py-5" style="background-color: #0669b1;">
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-6 mb-4" style="border-right: 2px dotted #fafafa;">

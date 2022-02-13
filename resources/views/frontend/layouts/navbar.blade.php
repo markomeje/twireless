@@ -34,19 +34,19 @@
                 <div class="navbar-links d-flex align-items-center">
                     <ul class="d-flex align-items-center navbar-links-list">
                         <li class="ml-4">
-                            <a href="/" class="text-white">Home</a>
+                            <a href="{{ route('home') }}" class="text-white">Home</a>
                         </li>
                         <li class="ml-4">
                             <a href="/about" class="text-white">About</a>
                         </li>
                         <li class="ml-4">
-                            <a href="/services" class="text-white">Services</a>
+                            <a href="{{ route('services') }}" class="text-white">Services</a>
                         </li>
                         <li class="ml-4">
-                            <a href="/pricing" class="text-white">Pricing</a>
+                            <a href="{{ route('pricing') }}" class="text-white">Pricing</a>
                         </li>
                         <li class="ml-4">
-                            <a href="/contact" class="text-white">Contact</a>
+                            <a href="{{ route('contact') }}" class="text-white">Contact</a>
                         </li>
                         @if(auth()->check())
                             <?php if(auth()->user()->role === 'admin'): ?>
@@ -60,10 +60,10 @@
                             <?php endif; ?>
                         @else
                             <li class="ml-4">
-                                <a href="/signup" class="btn btn-sm border-white text-white rounded-pill px-4">Signup</a>
+                                <a href="{{ route('signup') }}" class="btn btn-sm border-white text-white rounded-pill px-4">Signup</a>
                             </li>
                             <li class="ml-4">
-                                <a href="/login" class="btn btn-sm bg-primary text-white rounded-pill px-4">Login</a>
+                                <a href="{{ route('login') }}" class="btn btn-sm bg-primary text-white rounded-pill px-4">Login</a>
                             </li>
                        @endif
                     </ul>
@@ -73,7 +73,7 @@
                                 <div class="dropdown cursor-pointer d-block ml-3 text-decoration-none text-center rounded-circle" style="width: 20px; height: 20px; line-height: 20px;">
                                     <img src="/images/profiles/<?= empty($user) || empty($user->picture) ? 'default.png' : $user->picture; ?>" class="img-fluid border rounded-circle w-100 h-100" id="user-profile-menu" data-toggle="dropdown">
                                     <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="user-profile-menu">
-                                        <a class="dropdown-item text-dark logout-link" href="javascript:;" data-url="/login/logout">Logout</a>
+                                        <a class="dropdown-item text-dark" href="{{ route('logout') }}">Logout</a>
                                     </div>
                                 </div>
                             </li>
@@ -92,19 +92,19 @@
 <div class="navbar-menu shadow no-gutters bg-white position-fixed">
     <div class="menu-content min-vh-100 px-4 mb-4">
         <div class="mb-4">
-            <a href="" class="px-4 rounded bg-alice text-pink py-3 m-0 d-block text-dark">Home</a>
+            <a href="{{ route('home') }}" class="px-4 rounded bg-alice text-pink py-3 m-0 d-block text-dark">Home</a>
         </div>
         <div class="mb-4">
-            <a href="/about" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">About</a>
+            <a href="{{ route('about') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">About</a>
         </div>
         <div class="mb-4">
-            <a href="/services" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Services</a>
+            <a href="{{ route('services') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Services</a>
         </div>
         <div class="mb-4">
-            <a href="/pricing" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Pricing</a>
+            <a href="{{ route('pricing') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Pricing</a>
         </div>
         <div class="mb-4">
-            <a href="/contact" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Contact</a>
+            <a href="{{ route('contact') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Contact</a>
         </div>
         @if(auth()->check())
             <?php if(strtolower(auth()->user()->role) === 'admin'): ?>
@@ -118,10 +118,10 @@
             <?php endif; ?>
         @else
             <div class="mb-4">
-                <a href="/login" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Login</a>
+                <a href="{{ route('login') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Login</a>
             </div>
             <div class="mb-4">
-                <a href="/signup" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Signup</a>
+                <a href="{{ route('signup') }}" class="px-4 rounded bg-alice text-pink py-3  m-0 d-block text-dark">Signup</a>
             </div>
         @endif
     </div>

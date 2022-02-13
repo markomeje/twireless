@@ -169,7 +169,6 @@
                 </div>
             </div>
         </section>
-        @include('frontend.home.partials.clients')
         @include('frontend.layouts.bottom')
     </div>
 @include('layouts.footer')
