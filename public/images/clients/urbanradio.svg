@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="132.333px" height="70px" viewBox="0 0 132.333 70" enable-background="new 0 0 132.333 70" xml:space="preserve">
+<style>
+#orange{
+   animation-name:orange;
+   animation-duration:0.5s;
+   animation-iteration-count:infinite;
+}
+@keyframes orange{
+   0%{transform:translateY(-3px);}
+   50%{transform:translateY(0px);}
+   100%{transform:translateY(5px);}
+}
+#red{
+   animation-name:red;
+   animation-duration:0.75s;
+   animation-iteration-count:infinite;
+}
+@keyframes red{
+   0%{transform:translateY(-4px);}
+   50%{transform:translateY(0px);}
+   100%{transform:translateY(5px);}
+}
+#yellow{
+   animation-name:yellow;
+   animation-duration:0.7s;
+   animation-iteration-count:infinite;
+}
+@keyframes yellow{
+   0%{transform:translateY(-3px);}
+   50%{transform:translateY(0px);}
+   100%{transform:translateY(4px);}
+}
+#blue{
+   animation-name:blue;
+   animation-duration:1s;
+   animation-iteration-count:infinite;
+}
+@keyframes blue{
+   0%{transform:translateY(-3px);}
+   50%{transform:translateY(0px);}
+   100%{transform:translateY(5px);}
+}
+#purple{
+   animation-name:purple;
+   animation-duration:0.6s;
+   animation-iteration-count:infinite;
+}
+@keyframes purple{
+   0%{transform:translateY(-3px);}
+   50%{transform:translateY(0px);}
+   100%{transform:translateY(4px);}
+}
+</style>
+	 <defs>
+	 <style type="text/css">
+	  @font-face {
+	  font-family: 'Arial,Helvetica Neue,Helvetica,sans-serif';
+                src: url('system_san_francisco_display_regular-webfont.eot');
+				}
+	 </style>
+	 
+	 </defs>
+	 
+<g>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="56.6162" y1="7.5288" x2="53.3842" y2="44.4712">
+		<stop  offset="0.1452" style="stop-color:#F68F2D"/>
+		<stop  offset="0.3441" style="stop-color:#F7A04C"/>
+		<stop  offset="0.9032" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<polyline id="orange" fill="url(#SVGID_1_)" stroke="#070300" stroke-width="2" stroke-miterlimit="10" points="48,44 48,8 62,8 62,44 	"/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="76.8848" y1="1.4653" x2="73.1166" y2="44.5357">
+		<stop  offset="0.1075" style="stop-color:#ED222A"/>
+		<stop  offset="0.3387" style="stop-color:#ED222A"/>
+		<stop  offset="0.957" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<polyline id="red" fill="url(#SVGID_2_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="83,44 83,25 83,2 67,2 67,44 	
+		"/>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="99.4785" y1="10.6045" x2="96.5222" y2="44.3953">
+		<stop  offset="0.1344" style="stop-color:#0CB1EF"/>
+		<stop  offset="0.4624" style="stop-color:#34BEF2"/>
+		<stop  offset="0.8065" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<polyline id="blue" fill="url(#SVGID_3_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="104,44 104,11 92,11 92,25 
+		92,44 	"/>
+	<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="114.7842" y1="26.5439" x2="113.217" y2="44.4565">
+		<stop  offset="0.1344" style="stop-color:#C6DB4B"/>
+		<stop  offset="0.5699" style="stop-color:#D6E57D"/>
+		<stop  offset="0.8065" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<polyline id="yellow" fill="url(#SVGID_4_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="108,44 108,27 120,27 120,44 	
+		"/>
+	<g id="purple">
+		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="80.877" y1="24.7012" x2="78.1227" y2="44.2986">
+			<stop  offset="0.2419" style="stop-color:#EF30A1"/>
+			<stop  offset="0.5" style="stop-color:#F03DA7"/>
+			<stop  offset="0.957" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<polyline fill="url(#SVGID_5_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="83,44 83,25 76,25 76,44 		"/>
+		<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="88.8965" y1="24.5635" x2="86.1036" y2="44.4361">
+			<stop  offset="0.2688" style="stop-color:#EF30A1"/>
+			<stop  offset="0.5054" style="stop-color:#F043AA"/>
+			<stop  offset="0.9624" style="stop-color:#FFFFFF"/>
+		</linearGradient>
+		<polyline fill="url(#SVGID_6_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="92,44 92,25 83,25 83,44 		"/>
+	</g>
+	<linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="97.7451" y1="24.6025" x2="94.2547" y2="44.3978">
+		<stop  offset="0.1667" style="stop-color:#0CB1EF"/>
+		<stop  offset="0.3387" style="stop-color:#71D2F6"/>
+		<stop  offset="0.7366" style="stop-color:#FFFFFF"/>
+	</linearGradient>
+	<polyline fill="url(#SVGID_7_)" stroke="#000000" stroke-width="2" stroke-miterlimit="10" points="100,44 100,25 92,25 92,44 	"/>
+</g>
+<text transform="matrix(1 0 0 1 6.2495 57.9082)" fill="#fafafa" font-family="Kanit" font-size="16.8305">URBAN RADIO</text>
+<text transform="matrix(1 0 0 1 7.981 44.3027)" fill="#d9d4d4" font-family="Kanit" font-size="12">94.5FM</text>
+<text transform="matrix(1 0 0 1 48.5469 69)" fill="#d9d4d4" font-family="Kanit" font-size="14.8411">ENUGU</text>
+</svg>

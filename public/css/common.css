@@ -1,0 +1,137 @@
+:root {
+    --darkblue: #124252;
+    --alabaster: #F1F1E6;
+    --alice: #E4EBEF;
+    --saphire:  #1A5E75;
+    --misty: #fce3e4;
+    --romansilver:  #868f9a;
+    --main-white-color: white;
+    --main-black-color: black;
+}
+
+.text-romansilver {
+    color: var(--romansilver);
+}
+
+.disable { 
+    opacity: .4;
+    cursor: default !important;
+    pointer-events: none;
+}
+
+p {
+    font-size: 18px;
+}
+
+.bg-alabaster {
+    background-color: var(--alabaster);
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    overflow-x: hidden;
+    font-family: serif;
+}
+
+.bg-saphire {
+    background-color: var(--saphire);
+}
+
+*:focus {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+}
+
+.bg-darkblue {
+    background-color: var(--darkblue);
+}
+
+.text-darkblue {
+    color: var(--darkblue);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: serif;
+}
+
+.bg-misty {
+    background-color: var(--misty);
+}
+
+.pagination-link {
+    height: 25px !important;
+    width: 25px !important;
+    line-height: 24px;
+}
+
+ul {
+    list-style: none;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.border-alice {
+    border: 1px solid var(--alice);
+}
+
+.bg-alice {
+    background-color: var(--alice);
+}
+
+.text-alice {
+    color: var(--alice);
+}
+
+a:hover {
+    opacity: 0.9;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.center-absolute {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+/** Customize Switch */
+.custom-switch .custom-control-input:checked~.custom-control-label::before {
+    background-color: #28a745 !important;
+    border: none !important;
+}
+
+.custom-switch .custom-control-input:checked:focus~.custom-control-label::before {
+    -webkit-box-shadow: 0 0 0 1px transparent;
+            box-shadow: 0 0 0 1px transparent;
+}
+
+.custom-switch .custom-control-input:focus~.custom-control-label::before {
+    -webkit-box-shadow: 0 0 0 1px transparent;
+            box-shadow: 0 0 0 1px transparent;
+}
+
+.custom-switch .custom-control-input:active~.custom-control-label::before {
+    background-color: transparent;
+}
+
+.custom-switch .custom-control-label::after {
+    background-color: #6c757d;
+}

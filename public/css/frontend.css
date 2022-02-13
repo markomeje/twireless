@@ -1,0 +1,354 @@
+section.owl-carousel {
+  display: none;
+}
+ 
+.owl-slide .static {
+  position: static; 
+}
+ 
+.cover {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.owl-carousel .owl-slide {
+  position: relative;
+  min-height: 100vh;
+  background-color: lightgray;
+  height: 720px;
+}
+ 
+.owl-carousel .owl-slide-animated {
+  transform: translateX(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.05s;
+}
+ 
+.owl-carousel .owl-slide-animated.is-transitioned {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s;
+}
+ 
+.owl-carousel .owl-slide-title.is-transitioned {
+  transition-delay: 0.2s;
+}
+ 
+.owl-carousel .owl-slide-subtitle.is-transitioned {
+  transition-delay: 0.35s;
+}
+ 
+.owl-carousel .owl-slide-cta.is-transitioned {
+  transition-delay: 0.5s;
+}
+
+.owl-carousel .owl-dots,
+.owl-carousel .owl-nav {
+  position: absolute;
+}
+ 
+.owl-carousel .owl-dots .owl-dot div {
+  background: transparent;
+  border: 1px solid var(--main-white-color);
+  transition: all 0.2s ease;
+  margin-right: 10px;
+	width: 10px !important;
+	height: 10px !important;
+	border-radius: 50%;
+}
+ 
+.owl-carousel .owl-dots .owl-dot:hover div,
+.owl-carousel .owl-dots .owl-dot.active div {
+  background: var(--main-white-color);
+}
+ 
+.owl-carousel .owl-nav {
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
+.hanburger-icon {
+    width: 28px;
+    height: 28px;
+	-webkit-transition: 0.8s;
+	-o-transition: 0.8s;
+	transition: 0.8s;
+	display: none !important;
+}
+
+.hanburger-icon .icon-lines {
+    width: 28px;
+    height: 2px;
+    border-radius: 2px;
+	-webkit-transition: 0.6s;
+	-o-transition: 0.6s;
+	transition: 0.6s;
+	background-color: #fff;
+}
+
+.hanburger-icon.slide .icon-lines {
+	background: transparent;
+}
+
+.hanburger-icon.slide .icon-lines::before {
+	-webkit-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+}
+
+.hanburger-icon.slide .icon-lines::after {
+	-webkit-transform: rotate(-45deg);
+	    -ms-transform: rotate(-45deg);
+	        transform: rotate(-45deg);
+}
+
+.icon-lines::before,
+.icon-lines::after {
+	content: '';
+	position: absolute;
+	width: 28px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
+	-webkit-transition: 0.6s;
+	-o-transition: 0.6s;
+	transition: 0.6s;
+	left: 0;
+	right: 0;
+}
+
+.icon-lines::before {
+	-webkit-transform: translateY(-7px);
+	    -ms-transform: translateY(-7px);
+	        transform: translateY(-7px);
+}
+
+.icon-lines::after {
+	-webkit-transform: translateY(7px);
+	    -ms-transform: translateY(7px);
+	        transform: translateY(7px);
+}
+
+.logo-wrapper {
+	width: 218px;
+}
+
+.navbar-menu {
+	width: 20vw;
+	z-index: 5;
+	top: 0;
+	bottom: 0;
+	-webkit-transition: 0.6s;
+	-o-transition: 0.6s;
+	transition: 0.6s;
+	right: -100%;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.navbar-menu .menu-content {
+	z-index: 6;
+	overflow-y: scroll;
+	-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    padding-top: 100px;
+}
+
+.navbar-toggle {
+	right: 0;
+	-webkit-transition: 0.6s;
+	-o-transition: 0.6s;
+	transition: 0.6s;
+}
+
+.navbar-menu .menu-content::-webkit-scrollbar { 
+    display: none !important;  /* Safari and Chrome */
+}
+
+.home-banner h1 {
+	font-size: 50px !important;
+}
+
+.home-banner:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(18, 66, 82, 0.96);
+	border-bottom-left-radius: 200px;
+}
+
+.intro-section .into-icons {
+	font-size: 30px; 
+	margin: 0 auto; 
+	width: 80px; 
+	height: 80px; 
+	line-height: 80px;
+}
+
+.benefits-section {
+	padding: 160px 0;
+	background-image: url('../images/banners/glow.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.benefits-section:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	z-index: -2;
+	background-color: rgba(18, 66, 82, 0.5);
+}
+
+.benefits-section .card {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.section-banner {
+	padding: 180px 0 40px;
+}
+
+.about-banner {
+	background-image: url('../images/banners/fiber.jpg'); 
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	background-position: center; 
+	padding: 240px 0 120px;
+}
+
+.services-banner {
+	background-image: url('../images/banners/remp.jpg'); 
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	/*background-position: center; */
+	padding: 220px 0 100px;
+}
+
+.pricing-banner {
+	background-image: url('../images/banners/network.jpg'); 
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	/*background-position: center; */
+	padding: 220px 0 100px;
+}
+
+.footer-section {
+	padding: 100px 0 0;
+	background-image: url('../images/banners/dark.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+	        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.footer-section:before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(18, 66, 82, 0.8);
+	z-index: -1;
+}
+
+/*Large devices (desktops, less than 1200px)*/
+@media (max-width: 1199.98px) {
+	.navbar-menu {
+		width: 30vw;
+	}
+}
+
+/*Medium devices (tablets, less than 992px)*/
+@media (max-width: 991.98px) and (min-width: 768.98px) {
+	.navbar-menu {
+		width: 32vw;
+	}
+}
+
+/*Small devices (landscape phones, less than 768px)*/
+@media (max-width: 768px) {
+	.navbar-links-list {
+		display: none !important;
+	}
+
+	.hanburger-icon {
+		display: flex !important;
+	}
+
+	.logo-wrapper {
+		width: 194px;
+	}
+
+	.navbar-menu {
+		width: 45vw;
+	}
+
+	.navbar-menu .menu-content {
+		margin-top: 60px;
+	}
+
+	.home-banner h1 {
+		font-size: 37.5px !important;
+	}
+
+	.home-services-section:before {
+		width: 100%;
+	}
+}
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+	.owl-carousel .owl-slide {
+	  height: 780px;
+	}
+	.topmost-bar {
+		display: none !important;
+	}
+
+	.navbar-menu .menu-content {
+		margin-top: 30px;
+	}
+
+	.section-banner {
+		padding: 130px 0 30px;
+	}
+
+	.navbar-menu {
+		width: 100vw;
+	}
+
+	.intro-section .into-icons {
+		margin: 0; 
+	}
+
+	.about-banner {
+		padding: 220px 0 100px;
+	}
+
+	.services-banner, .pricing-banner {
+		padding: 200px 0 80px;
+	}
+
+}
