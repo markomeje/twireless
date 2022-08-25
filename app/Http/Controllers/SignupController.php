@@ -37,10 +37,13 @@ class SignupController extends Controller
     {
         $data = request()->all();
         $validator = Validator::make($data, [ 
+            'fullname' => ['required', 'string'], 
+            'state' => ['required'], 
             'email' => ['nullable', 'email', 'unique:users'], 
             'phone' => ['required', 'unique:users'], 
             'password' => ['required', 'string'],
             'retype' => ['required', 'same:password'],
+            'address' => ['required', 'string'],
             'agree' => ['required', 'string'],
         ], ['retype.required' => 'Please enter a password', 'agree.required' => 'You have to agree to our terms and conditions', 'phone.required' => 'Please enter your phone number.', 'retype.same:password' => 'Retype thesame password']);
 
@@ -53,6 +56,7 @@ class SignupController extends Controller
 
         try {
             DB::beginTransaction();
+            $email = $data['email'] ?? null;
             $user = User::create([
                 'email' => $data['email'],
                 'phone' => $data['phone'],
@@ -60,35 +64,34 @@ class SignupController extends Controller
                 'role' => 'user',
             ]);
 
-            $otp = random_int(100000, 999999);
-            $reference = Str::random(64);
-            $verify = Verify::create([
-                'otp' => $otp,
-                'otpexpiry' => Carbon::now()->addMinutes(10),
-                'reference' => $reference,
-                'phone' => $data['phone'],
+            Customer::create([
+                'address' => $data['address'],
+                'state_id' => $data['state'],
+                'fullname' => $data['fullname'],
+                'user_id' => $user->id ?? null,
             ]);
 
-            Sms::otp(['otp' => $otp, 'phone' => $data['phone']]);
-            if (!empty($data['email'])) {
-                $token = Str::random(64);
-                $verify->token = $token;
-                $verify->tokenexpiry = Carbon::now()->addMinutes(60);
-                $verify->email = $data['email'];
-                $verify->update();
-                $mail = new EmailVerification([
-                    'email' => $data['email'], 
+            $token = Str::string(64);
+            if (!empty($email)) {
+                $verify = Verification::create([
+                    'type' => 'email',
+                    'expiry' => Carbon::now()->addDays(5),
+                    'email' => $email,
                     'token' => $token,
                 ]);
 
-                Mail::to($data['email'])->send($mail);
+                $mail = new EmailVerification([
+                    'email' => $email, 
+                    'token' => $token,
+                ]);
+
+                Mail::to($email)->send($mail);
             }
 
-            DB::commit();
             return response()->json([
                 'status' => 1,
                 'info' => 'Operation successful',
-                'redirect' => route('phone.verify', ['reference' => $reference]),
+                'redirect' => route('email.verify', ['token' => $token]),
             ]);
 
         } catch (Exception $error) {

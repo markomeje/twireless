@@ -77,13 +77,95 @@ function handleButton(button, spinner) {
     spinner.addClass('d-none');
 }
 
-function handleErrors(input, span, message = '') {
-    input.addClass('is-invalid');
-    span.html(message);
-    input.focus(function() {
-        input.removeClass('is-invalid');
-        span.html('');
+function handleErrors(errors) {
+    $.each(errors, function(field, message) {
+        var element = $('.'+field);
+        var span = $('.'+field+'-error');
+        element.addClass('is-invalid');
+        span.html(message);
+        element.focus(function() {
+            element.removeClass('is-invalid');
+            span.html('');
+        });
     });
+}
+
+function handleForm(info = {}) {
+    var form = info.form;
+    var button = $('.'+info.button);
+    var spinner = $('.'+info.spinner);
+    var message = $('.'+info.message);
+    button.attr('disabled', true);
+    spinner.removeClass('d-none');
+    message.hasClass('d-none') ? '' : message.fadeOut();
+
+    $.ajax({
+        method: form.attr('method'),
+        url: form.attr('data-action'),
+        data: form.serializeArray(),
+        dataType: 'json',
+
+        success: function(response) {
+            if (response.status === 0) {
+                if($.isEmptyObject(response.error)){
+                    handleButton(button, spinner);
+                    message.removeClass('d-none alert-success').addClass('alert-danger');
+                    message.html(response.info).fadeIn();
+                }else{
+                    handleErrors(response.error);
+                    handleButton(button, spinner);
+                }
+            }else if(response.status === 1) {
+                handleButton(button, spinner);
+                message.removeClass('d-none alert-danger').addClass('alert-success');
+                message.html(response.info).fadeIn();
+                console.log(response.redirect);
+                return window.location.href = response.redirect;
+
+            }else {
+                handleButton(button, spinner);
+                alert('Network error. Try again.');
+            }
+        },
+
+        error: function() {
+            handleButton(button, spinner);
+            alert('Network error. Try again.');
+        },
+    });
+}
+
+function handleAjax(info = {}) {
+    if (confirm('Very sure?')) {
+        var button = $('.'+info.button);
+        var spinner = $('.'+info.spinner);
+        button.attr('disabled', true);
+        spinner.removeClass('d-none');
+        $.ajax({
+            method: 'post',
+            url: info.that.attr('data-url'),
+            dataType: 'json',
+
+            success: function(response) {
+                if (response.status === 0) {
+                    alert(response.info);
+                    handleButton(button, spinner)
+                }else if(response.status === 1) {
+                    alert(response.info);
+                    spinner.addClass('d-none');
+                    return window.location.href = response.redirect;
+                }else {
+                    handleButton(button, spinner)
+                    alert('Network error. Try again.');
+                }
+            },
+
+            error: function() {
+                handleButton(button, spinner)
+                alert('Network error. Try again.');
+            },
+        });
+    }
 }
 
 

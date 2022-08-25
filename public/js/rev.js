@@ -152,7 +152,7 @@ tpj(document).ready(function() {
                  disableFocusListener:false,
              }
          });
-     }
+    }
 	 
 	 
- }); /*ready*/
+}); /*ready*/

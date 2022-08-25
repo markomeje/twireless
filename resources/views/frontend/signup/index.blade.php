@@ -17,7 +17,8 @@
 				<p class="text-romansilver">Please Fill In All Fields.</p>
 				<div class="row">
 					<div class="col-12">
-						<form action="javascript:;" method="post" class="signup-form p-4 rounded border" data-action="/signup" autocomplete="off">
+						<form action="javascript:;" method="post" class="signup-form p-4 rounded border" data-action="{{ route('signup.process') }}" autocomplete="off">
+							@csrf
 							<div class="form-row">
 								<div class="form-group input-group-lg col-md-6">
 									<label for="" class="text-romansilver mb-2">Fullname</label>

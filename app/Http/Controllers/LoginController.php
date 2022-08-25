@@ -8,14 +8,6 @@ use Validator;
 class LoginController extends Controller
 {
 
-     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {}
-
     /**
      * Login View
      * 
@@ -34,9 +26,9 @@ class LoginController extends Controller
     {
         $data = request()->only(['login', 'password']);
         $validator = Validator::make($data, [
-            'login' => ['required'], 
+            'email' => ['required', 'email'], 
             'password' => ['required']
-        ], ['login.required' => 'Enter your email or phone number.']);
+        ]);
 
         if ($validator->fails()) {
             return response()->json([
@@ -45,7 +37,7 @@ class LoginController extends Controller
             ]);
         }
 
-        $user = User::where(['email' => $data['login']])->first() || User::where(['phone' => $data['login']])->first();
+        $user = User::where(['email' => $data['email']])->first();
         if (empty($user)) {
             return response()->json([
                 'status' => 0,
@@ -53,7 +45,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if (auth()->attempt(['email' => $data['login'], 'password' => $data['password']]) || auth()->attempt(['phone' => $data['login'], 'password' => $data['password']])) {
+        if (auth()->attempt(['email' => $data['email'], 'password' => $data['password']])) {
             request()->session()->regenerate();
             $redirect = auth()->user()->role === 'admin' ? route('admin') : (empty(auth()->user()->profile) ? route('user.profile') : route('user'));
 
