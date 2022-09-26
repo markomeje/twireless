@@ -1,0 +1,41 @@
+.modal-footer {
+	justify-content: flex-start !important;
+}
+
+/*.thead-th {
+	padding-left: 25px !important;
+}*/
+
+.object-cover {
+	object-fit: cover;
+}
+
+.image-overlay {
+	background-size: cover; 
+	background-position: center;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.text-underline {
+	text-decoration: underline;
+}
+
+.select-multiple {
+	min-height: 48.39px !important;
+}
+
+.small-circle {
+	width: 34px;
+	height: 34px;
+}
+
+.small-circle .small-circle-icon {
+	margin-top: 9px;
+}
+
+.tiny-font {
+	font-size: 11px;
+}
