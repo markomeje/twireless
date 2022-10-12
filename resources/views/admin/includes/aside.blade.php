@@ -17,11 +17,11 @@
           </a>
         </li>
         <li class="nav-item border mb-4 rounded">
-          <a class="nav-link " href="{{ route('admin.plans') }}">
+          <a class="nav-link " href="{{ route('admin.packages') }}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Plans</span>
+            <span class="nav-link-text ms-1">Packages</span>
           </a>
         </li>
         <li class="nav-item border mb-4 rounded">
@@ -30,6 +30,14 @@
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Payments</span>
+          </a>
+        </li>
+        <li class="nav-item border mb-4 rounded">
+          <a class="nav-link " href="{{ route('admin.bundles') }}">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Bundles</span>
           </a>
         </li>
         <li class="nav-item border mb-4 rounded">
@@ -49,11 +57,11 @@
           </a>
         </li>
         <li class="nav-item border mb-4 rounded">
-          <a class="nav-link " href="{{ route('admin.dashboard') }}">
+          <a class="nav-link " href="{{ route('admin.subscriptions') }}">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Fees</span>
+            <span class="nav-link-text ms-1">Subscriptions</span>
           </a>
         </li>
         <li class="nav-item border mb-4 rounded">

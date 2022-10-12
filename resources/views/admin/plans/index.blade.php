@@ -8,16 +8,15 @@
       <!-- End Navbar -->
       <div class="container-fluid py-4">
         <div class="bg-white p-4 border-radius-xl">
-          <div class="d-flex justify-content-between mb-4 align-items-center">
-            <div>
-              <div class="">All plans</div>
-              <div>({{ $plans->total() }}) Plans</div>
+          <div class="d-flex mb-4 align-items-center">
+            <div class="me-2">
+              ({{ $plans->total() }}) All Plans
             </div>
-            <div class="">
-              <a href="javascript:;" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#add-plan">Add Plan</a>
-            </div>
+            <a href="javascript:;" class="text-underline me-2" data-bs-toggle="modal" data-bs-target="#add-package">Add Package</a>
+            <a href="javascript:;" class="text-underline m-0" data-bs-toggle="modal" data-bs-target="#add-bundle">Add Bundle</a>
           </div>
           @include('admin.plans.partials.add')
+          @include('admin.bundles.partials.add')
           @if(empty($plans->count()))
             <div class="alert alert-danger text-white">No plans yet</div>
           @else

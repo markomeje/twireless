@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\{Payment, User, Currency};
+use App\Models\{Package, User};
 use Faker\Factory as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,9 +18,8 @@ class PlanFactory extends Factory
         return [
             'price' => $faker->numberBetween(1000, 9500),
             'speed' => $faker->numberBetween(5, 15),
-            'bandwidth' => 'Unlimited',
             'size' => $faker->numberBetween(50, 250),
-            'type' => $faker->randomElement(Plan::$types),
+            'package_id' => rand(1, Package::count()),
             'connections' => rand(1, User::count()),
             'monthly' => $faker->boolean(60),
             'duration' => 30,

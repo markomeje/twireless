@@ -1,10 +1,9 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\State;
+use App\Models\Package;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use Hash;
 
 class PackageSeeder extends Seeder
 {
@@ -16,11 +15,11 @@ class PackageSeeder extends Seeder
     public function run()
     {
         $packages = [
-            ['name' => 'Unlimited Fixed Wireless Internet Package', 'type' => 'fixed'],
-            ['name' => 'Quota Package', 'type' => 'quota'],
-            ['name' => 'Event Package', 'type' => 'event'],
-            ['name' => 'Unlimited Dedicated Speed Package', 'type' => 'dedicated'],
-        ]
+            ['name' => 'Home Package', 'devices' => '1 - 4', 'speed' => 7, 'price' => 15000, 'setup_fee' => 85000, 'duration' => 30, 'period' => 'monthly'],
+            ['name' => 'Business Mini', 'devices' => '4 - 8', 'speed' => 15, 'price' => 31000, 'setup_fee' => 85000, 'duration' => 30, 'period' => 'monthly'],
+            ['name' => 'Business Pro', 'devices' => '9 - 12', 'speed' => 20, 'price' => 50000, 'setup_fee' => 85000, 'duration' => 30, 'period' => 'monthly'],
+            ['name' => 'Jumbo Package', 'devices' => '1 - 5', 'speed' => 10, 'price' => 25000, 'setup_fee' => 40000, 'duration' => 30, 'period' => 'monthly'],
+        ];
 
         Package::truncate();
         foreach ($packages as $package) {

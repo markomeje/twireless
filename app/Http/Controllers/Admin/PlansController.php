@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Models\{Plan}
+use App\Models\Plan;
 
 class PlansController extends Controller 
 {

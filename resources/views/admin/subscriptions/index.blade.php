@@ -7,25 +7,22 @@
         @include('admin.includes.navbar')
       <!-- End Navbar -->
       <div class="container-fluid py-4">
-        <div class="bg-white p-4 border-radius-xl">
-          <div class="d-flex justify-content-between mb-4 align-items-center">
-            <div>
-              <div class="">All subscriptions</div>
-              <div>A total of ({{ $subscriptions->total() }}) Subscriptions</div>
-            </div>
-            <div class="">
-              <a href="javascript:;" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#add-subscription">Add subscription</a>
-            </div>
+        <div class="alert alert-info border-0 mb-4 d-flex align-items-center">
+          <div class="text-white me-2">
+            ({{ $subscriptions->total() }}) Subscriptions
           </div>
-          @include('admin.subscriptions.partials.add')
+          <a href="javascript:;" class="text-underline" data-bs-toggle="modal" data-bs-target="#add-subscription">Add subscription</a>
+        </div>
+        @include('admin.subscriptions.partials.add')
+        <div class="bg-white p-4 border-radius-xl">
           @if(empty($subscriptions->count()))
-            <div class="alert alert-danger text-white">No subscriptions yet</div>
+            <div class="alert alert-danger text-white m-0">No subscriptions yet</div>
           @else
             <table class="table table-striped table-hover table-responsive mb-4">
               <thead class="">
                 <tr>
                   <th class="thead-th px-2">S/N</th>
-                  <th class="thead-th px-2">Contact name</th>
+                  <th class="thead-th px-2">Customer Name</th>
                   <th class="thead-th px-2">Company name</th>
                   <th class="thead-th px-2">State</th>
                   <th class="thead-th px-2">Designation</th>

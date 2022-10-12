@@ -38,7 +38,11 @@
                   <?php $i++; ?>
                   <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ \Str::limit($customer->contact_name, 15) }}</td>
+                    <td>
+                      <a href="{{ route('admin.customer.profile', ['id' => $customer->id]) }}">
+                        {{ \Str::limit($customer->contact_name, 15) }}
+                      </a>
+                    </td>
                     <td>{{ \Str::limit($customer->company_name, 12) }}</td>
                     <td>{{ $customer->state->name }}</td>
                     <td>
@@ -46,14 +50,14 @@
                         {{ $customer->user->phone }}
                       </a>
                     </td>
-                    <td>{{ $customer->designation }}</td>
+                    <td>{{ ucwords($customer->designation) }}</td>
                     <td>
                       <a href="" class="text-danger">
                         <small>
                           <i class="icofont-trash"></i>
                         </small>
                       </a>
-                      <a href="" class="text-warning">
+                      <a href="{{ route('admin.customer.profile', ['id' => $customer->id]) }}" class="text-warning">
                         <small>
                           <i class="icofont-edit"></i>
                         </small>

@@ -7,39 +7,27 @@
         @include('admin.includes.navbar')
       <!-- End Navbar -->
       <div class="container-fluid py-4">
-        @if(empty($client))
-          <div class="alert alert-danger d-block mb-4 text-white border-0">Unkwon error. Client details not found.</div>
-          @if(!empty($clients))
-            <div class="p-4 bg-white border-radius-lg">
-              <h5 class="mb-4">Other Clients</h5>
-              <div class="row">
-                @foreach($clients as $client)
-                  <div class="col-lg-3 col-md-4 col-12 mb-4">
-                  @include('admin.clients.partials.card')
-                </div>
-                @endforeach
-              </div>
-            </div>
-          @endif
+        @if(empty($customer))
+          <div class="alert alert-danger d-block mb-4 text-white border-0">Unkwon error. Customer details not found.</div>
         @else
-          <div class="bg-white p-3 border-radius-xl">
+          <div class="">
             <div class="mb-4">
-              <h5 class="mb-2">{{ ucwords($client->fullname) }} Profile</h5>
-              <div>
-                
-              </div>
+              <h5 class="mb-2 text-white">
+                {{ ucwords($customer->contact_name) }} Profile
+              </h5>
             </div>
             <div class="row">
-              <div class="col-12 col-md-6">
+              <div class="col-12 mb-4">
                 <div class="card border border-light bg-gray-100 shadow-lg border-raduis-sm">
-                  <div class="card-header">
-                    <h6 class="m-0">Documents</h6>
+                  <div class="card-header d-flex justify-content-between">
+                    <div class="m-0">Subscriptions</div>
+                    <div class="" data-bg-toggle="model" data-bs-target="#add-subscription">Subscribe</div>
                   </div>
                   <div class="card-body"></div>
                   <div class="card-footer"></div>
                 </div>
               </div>
-              <div class="col-12 col-md-6">
+              <div class="col-12 mb-4">
                 <div class="card border border-light bg-gray-100 shadow-lg border-raduis-sm">
                   <div class="card-header">
                     <h6 class="m-0">Payments</h6>

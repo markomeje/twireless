@@ -24,7 +24,6 @@ class CreatePlansTable extends Migration
             $table->boolean('monthly')->default(false);
             $table->foreignId('package_id')->nullable();
             $table->bigInteger('duration');
-            $table->string('type');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

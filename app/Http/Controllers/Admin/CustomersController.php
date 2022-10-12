@@ -19,7 +19,7 @@ class CustomersController extends Controller
      */
     public function index($limit = 20)
     {
-        return view('admin.customers.index', ['title' => 'T-Wireless | All Customers', 'customers' => Customer::latest()->paginate($limit)]);
+        return view('admin.customers.index', ['title' => 'T-Wireless | All Customers', 'customers' => Customer::latest('id')->paginate($limit)]);
     }
 
     /**
@@ -94,5 +94,13 @@ class CustomersController extends Controller
                 'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
             ]);
         }
+    }
+
+    /**
+     * Customer Profile
+     */
+    public function profile($id = 0)
+    {
+        return view('admin.customers.profile', ['title' => 'T-Wireless | Customer Profile', 'customer' => Customer::find($id)]);
     }
 }

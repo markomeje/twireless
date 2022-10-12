@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\State;
+use App\Models\Bundle;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Hash;
@@ -15,12 +15,7 @@ class BundleSeeder extends Seeder
      */
     public function run()
     {
-        $bundles = ['Big Data', 'Mini Data', 'Mega Data', 'Super Data'];
         Bundle::truncate();
-        foreach ($bundles as $state) {
-            Bundle::create([
-                'name' => $state
-            ]);
-        }
+        Bundle::factory()->count(143)->create();
     }
 }
