@@ -8,7 +8,7 @@
         </button>
       </div>
       <form class="add-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.add') }}">
-          @csrf
+        @csrf
         <div class="modal-body">
           <div class="row">
             <div class="form-group col-md-6">
