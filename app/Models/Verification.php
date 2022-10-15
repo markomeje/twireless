@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Verification extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'type',
+        'user_id',
+        'expiry',
+        'token',
+    ];
 }

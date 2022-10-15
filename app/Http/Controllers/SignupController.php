@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use App\Mail\EmailVerification;
-use Illuminate\Support\Facades\{Http, DB};
+use Illuminate\Support\Facades\DB;
 use App\Models\{User, Verify};
 use App\Helpers\{Sms};
 use Illuminate\Support\Str;

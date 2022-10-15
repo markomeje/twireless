@@ -118,7 +118,7 @@
 							@if(auth()->check())
 								@if(auth()->user()->role === 'admin')
 									<li>
-										<a href="<?= ADMIN_DOMAIN; ?>" class="text-white d-block p-3 rounded mb-3 bg-primary" target="_blank">Dashboard</a>
+										<a href="{{ route('admin.dashboard') }}" class="text-white d-block p-3 rounded mb-3 bg-primary" target="_blank">Dashboard</a>
 									</li>
 								@endif
 							@else

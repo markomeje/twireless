@@ -4,6 +4,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
+use Hash;
 
 class UserFactory extends Factory
 {
@@ -17,14 +18,12 @@ class UserFactory extends Factory
     {
         $faker = Faker::create();
         return [
-            'name' => $faker->name(),
+            'verified' => $faker->boolean(0.4),
             'phone' => $faker->phoneNumber(),
             'email' => $faker->unique()->safeEmail(),
-            'role' => 'user',
-            'password' => \Hash::make('1234'),
-            'remember_token' => \Str::random(32),
-            'status' => $faker->randomElement(User::$status),
-            'type' => $faker->randomElement(['individual', 'company']),
+            'role' => 'customer',
+            'password' => Hash::make('1234'),
+            'status' => 'active'
         ];
     }
 

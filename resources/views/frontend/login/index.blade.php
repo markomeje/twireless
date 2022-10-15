@@ -14,8 +14,8 @@
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-12 col-md-4 mb-4">
-						<form action="javascript:;" method="post" class="login-form rounded mb-3" data-action="/login" autocomplete="off">
-							<div class="alert mt-4 px-3 login-message d-none"></div>
+						<form action="javascript:;" method="post" class="login-form rounded mb-3" data-action="{{ route('auth.login') }}">
+							@csrf
 							<div class="form-row">
 								<div class="form-group input-group-lg col-12">
 									<label for="" class="text-romansilver mb-2">Email</label>
@@ -35,13 +35,14 @@
 								    <label class="custom-control-label cursor-pointer text-muted" for="rememberme">Remember Login</label>
 								</div>
 							</div>
-							<button type="submit" class="btn btn-lg border-0 bg-primary px-5 rounded-pill text-white login-button">
+							<div class="alert mt-4 px-3 login-message d-none"></div>
+							<button type="submit" class="btn btn-block btn-lg border-0 bg-primary px-5 text-white login-button">
 								<img src="/images/svgs/spinner.svg" class="mr-2 d-none login-spinner mb-1">
 								Login
 							</button>
 						</form>
 						<p class="alert alert-info mt-2">
-							Don't have an account? <a href="/signup">Signup Here</a>
+							Don't have an account? <a href="{{ route('signup') }}">Signup Here</a>
 						</p>
 					</div>
 					<div class="col-12 col-md-8 mb-4">

@@ -22,6 +22,7 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
     
     Route::group(['prefix' => 'login', 'middleware' => 'guest'], function () {
         Route::get('/', [\App\Http\Controllers\LoginController::class, 'index'])->name('login');
+        Route::post('/auth', [\App\Http\Controllers\LoginController::class, 'auth'])->name('auth.login');
     });
 
     Route::group(['prefix' => 'signup', 'middleware' => 'guest'], function () {
@@ -55,21 +56,34 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
 });
 
 Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(function() {
-    // Route::get('/', [\App\Http\Controllers\AdminController::class, 'index'])->name('admin');
-    // Route::get('/countries', [\App\Http\Controllers\Admin\CountriesController::class, 'index'])->name('admin.countries');
+    Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/payments', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.payments');
 
-    // Route::get('/subscriptions', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
+    Route::prefix('customers')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\CustomersController::class, 'index'])->name('admin.customers');
+        Route::post('/add', [\App\Http\Controllers\Admin\CustomersController::class, 'add'])->name('admin.customer.add');
+        Route::get('/profile/{id}', [\App\Http\Controllers\Admin\CustomersController::class, 'profile'])->name('admin.customer.profile');
+    });
 
-    // Route::get('/plans', [\App\Http\Controllers\Admin\PlansController::class, 'index'])->name('admin.plans');
-    // Route::prefix('plan')->group(function () {
-    //     Route::post('/add', [\App\Http\Controllers\Admin\PlansController::class, 'add'])->name('admin.plan.add');
-    //     Route::post('/edit/{id}', [\App\Http\Controllers\Admin\PlansController::class, 'edit'])->name('admin.plan.edit');
-    // });
+    Route::prefix('bundles')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\BundlesController::class, 'index'])->name('admin.bundles');
+        Route::post('/add', [\App\Http\Controllers\Admin\BundlesController::class, 'add'])->name('admin.bundle.add');
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\BundlesController::class, 'edit'])->name('admin.bundle.edit');
+    });
 
+    Route::prefix('packages')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\PackagesController::class, 'index'])->name('admin.packages');
+        Route::post('/add', [\App\Http\Controllers\Admin\PackagesController::class, 'add'])->name('admin.package.add');
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\PackagesController::class, 'edit'])->name('admin.package.edit');
+    });
+
+    Route::get('/stations', [\App\Http\Controllers\Admin\StationsController::class, 'index'])->name('admin.stations');
+    Route::get('/subscriptions', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
+    Route::get('/plans', [\App\Http\Controllers\Admin\PlansController::class, 'index'])->name('admin.plans');
 });
 
 Route::middleware(['web', 'auth', 'customer'])->domain(env('CUSTOMER_URL'))->group(function() {
-    // Route::get('/', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('user');
+    Route::get('/', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('customer.dashboard');
     // Route::get('/profile', [\App\Http\Controllers\Customer\ProfileController::class, 'index'])->name('user.profile');
 });
 

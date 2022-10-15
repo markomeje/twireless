@@ -15,6 +15,16 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('price')->nullable();
+            $table->string('size')->nullable();
+            $table->string('speed')->nullable();
+            $table->string('bandwidth')->nullable();
+            $table->text('connections')->nullable();
+            $table->foreignId('bundle_id')->nullable();
+            $table->boolean('monthly')->default(false);
+            $table->foreignId('package_id')->nullable();
+            $table->bigInteger('duration');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

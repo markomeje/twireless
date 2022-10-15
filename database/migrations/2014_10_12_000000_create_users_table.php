@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->boolean('verified')->default(false);
             $table->string('email')->unique();
             $table->string('role')->default('user');
-            $table->text('token')->nullable();
             $table->string('status')->default('inactive');
             $table->string('password');
             $table->rememberToken();

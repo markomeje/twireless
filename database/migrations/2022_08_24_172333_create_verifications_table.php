@@ -15,6 +15,10 @@ class CreateVerificationsTable extends Migration
     {
         Schema::create('verifications', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
+            $table->foreignId('user_id');
+            $table->string('expiry')->nullable();
+            $table->string('token')->nullable();
             $table->timestamps();
         });
     }
