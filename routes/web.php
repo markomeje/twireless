@@ -78,7 +78,13 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
     });
 
     Route::get('/stations', [\App\Http\Controllers\Admin\StationsController::class, 'index'])->name('admin.stations');
-    Route::get('/subscriptions', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
+
+    Route::prefix('subscriptions')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
+        Route::post('/add', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'add'])->name('admin.subscription.add');
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
+    });
+
     Route::get('/plans', [\App\Http\Controllers\Admin\PlansController::class, 'index'])->name('admin.plans');
 });
 
