@@ -15,7 +15,19 @@ class BundleSeeder extends Seeder
      */
     public function run()
     {
+        $bundles = [
+            ['size' => 75, 'price' => 15000],
+            ['size' => 100, 'price' => 20000],
+            ['size' => 125, 'price' => 25000],
+            ['size' => 250, 'price' => 50000],
+        ];
+
         Bundle::truncate();
-        Bundle::factory()->count(143)->create();
+        foreach ($bundles as $bundle) {
+            Bundle::create([
+                'size' => $bundle['size'],
+                'price' => $bundle['price'],
+            ]);
+        }
     }
 }

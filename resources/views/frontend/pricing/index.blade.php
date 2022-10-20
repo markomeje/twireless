@@ -10,81 +10,66 @@
 				</div>
 			</div>
 		</section>
-		{{-- <section class="" style="padding: 90px 0;">
+		<section class="" style="padding: 90px 0;">
 			<div class="container">
-				<?php if(empty($allPlans)): ?>
-					<div class="alert alert-info">No Pricing Plans</div>
-				<?php else: ?>
-					<?php $plans = []; ?>
-					<?php foreach($allPlans as $plan): ?>
-						<?php if(isset($plan->type)) $plans[$plan->type][] = $plan; ?>
-					<?php endforeach; ?>
-				<?php endif; ?>
-				<?php if(isset($plans['fixed'])): ?>
-					<div class="pb-3 mb-4 border-bottom">
-						<p class="text-romansilver bg-alabaster p-3 mb-4 rounded">Unlimited Fixed Wireless Internet Package(s)</p>
+				<?php $packages = \App\Models\Package::all(); ?>
+				@if(!empty($packages->count()))
+					<div class="mb-4">
+						<p class="text-dark bg-alabaster p-3 mb-4 rounded">Unlimited Fixed Wireless Internet Package(s)</p>
 						<div class="row">
-							<?php foreach($plans['fixed'] as $plan): ?>
+							@foreach($packages as $package)
 								<div class="col-12 col-md-4 col-lg-3 mb-3">
 									<div class="card border-0 rounded-bottom shadow-sm">
 										<div class="card-body p-0">
-											<p class="py-3 text-white mb-3 bg-darkblue px-3 border-bottom text-romansilver rounded-top">
-												<?= empty($plan->bandwidth) ? 'Nill' : ucwords($plan->bandwidth); ?>
+											<p class="py-3 text-white mb-3 bg-darkblue px-3 border-bottom rounded-top">
+												{{ empty($package->name) ? 'Nill' : ucwords($package->name) }}
 											</p>
-											<div class="pb-3 mb-3 px-3 border-bottom text-romansilver">
-											 	(<?= empty($plan->connections) ? 'Nill' : $plan->connections; ?>) Recommended Concurrent Devices
+											<div class="pb-3 mb-3 px-3 border-bottom text-dark">
+											 	({{ empty($package->devices) ? 'Nill' : $package->devices }}) Recommended Concurrent Devices
 											</div>
-											<div class="pb-3 mb-3 px-3 border-bottom text-romansilver">
-												<?= empty($plan->speed) ? 'Nill' : 'Up to '.$plan->speed; ?>
+											<div class="pb-3 mb-3 px-3 border-bottom text-dark">
+												{{ empty($package->speed) ? 'Nill' : 'Up to '.$package->speed }}Mbps
 											</div>
-											<div class="pb-3 mb-3 px-3 border-bottom text-romansilver">
-												<?= empty($plan->monthly) ? 'Nill' : 'NGN'.number_format((int)$plan->monthly).' Monthly'; ?>
+											<div class="pb-3 mb-3 px-3 border-bottom text-dark">
+												{{ empty($package->price) ? 'Nill' : 'NGN'.number_format((int)$package->price) }} {{ ucwords($package->period) }}
 											</div>
-											<div class="pb-3 px-3 text-romansilver">
-											<?= empty($plan->price) ? 'Nill' : 'NGN'.number_format((int)$plan->price).' One-off setup fee'; ?>
+											<div class="pb-3 px-3 text-dark border-bottom mb-3">
+											{{ empty($package->setup_fee) ? 'Nill' : 'NGN'.number_format((int)$package->setup_fee).' One-off setup fee'; }}
 											</div>
 											<div class="px-3 mb-4">
-												<a href="<?= DOMAIN; ?>/subscriptions/plan/<?= empty($plan->id) ? 0 : $plan->id; ?>" class="btn btn-sm bg-primary px-5 rounded-pill text-white">Subscribe</a>
+												<a href="javascript:;" class="btn btn-sm bg-primary px-5 rounded-pill text-white">Subscribe</a>
 											</div>
 										</div>
 									</div>
 								</div>
-							<?php endforeach; ?>
+							@endforeach
 						</div>
 					</div>
-				<?php endif; ?>
-				<?php if(isset($plans['quota'])): ?>
+				@endif
+				<?php $bundles = \App\Models\Bundle::all(); ?>
+				@if(!empty($bundles->count()))
 					<div class="pb-3">
-						<p class="text-romansilver bg-alabaster p-3 mb-4 rounded">Quota Package(s)</p>
+						<p class="text-dark bg-alabaster p-3 mb-4 rounded">Quota Package(s)</p>
 						<div class="row">
-							<?php foreach($plans['quota'] as $plan): ?>
-								<div class="col-12 col-md-4 col-lg-3 mb-3">
+							@foreach($bundles as $bundle)
+								<div class="col-12 col-md-4 col-lg-3 mb-4">
 									<div class="card border-0 rounded-bottom shadow-sm">
 										<div class="card-body p-0">
-											<p class="py-3 text-white mb-3 bg-darkblue px-3 border-bottom text-romansilver rounded-top">Data Size (<?= empty($plan->size) ? 'Nill' : $plan->size; ?>)
+											<p class="py-3 text-white mb-3 bg-darkblue px-3 border-bottom rounded-top">Data Size ({{ empty($bundle->size) ? 'Nill' : $bundle->size }}GB)
 											</p>
-											<div class="pb-3 mb-3 px-3 border-bottom text-romansilver">
-												<?= empty($plan->price) ? 'Nill' : 'NGN'.number_format((int)$plan->price); ?>
+											<div class="pb-3 mb-3 px-3 border-bottom text-dark">
+												{{ empty($bundle->price) ? 'Nill' : 'NGN'.number_format((int)$bundle->price); }}
 											</div>
-											<?php if(!empty($allActiveBundles)): ?>
-			                				    <?php foreach($allActiveBundles as $bundle): ?>
-			                				        <?php if((int)$bundle->id == (int)$plan->bundleid): ?>
-			                				        	<div class="pb-3 px-3 text-romansilver">
-			                				        		<?= empty($bundle->name) ? 'Nill' : $bundle->name; ?>
-			                				        	</div>
-			                				        <?php endif; ?>
-			                				    <?php endforeach; ?>
-			            				    <?php endif; ?>
 											<div class="px-3 mb-4">
-												<a href="<?= DOMAIN; ?>/subscriptions/plan/<?= empty($plan->id) ? 0 : $plan->id; ?>" class="btn btn-sm bg-primary px-5 rounded-pill text-white">Subscribe</a>
+												<a href="javascript:;" class="btn btn-sm bg-primary px-5 rounded-pill text-white">Subscribe</a>
 											</div>
 										</div>
 									</div>
 								</div>
-							<?php endforeach; ?>
+							@endforeach
 						</div>
 					</div>
-				<?php endif; ?>
+				@endif
 				<div>
 					<h3 class="text-darkblue">For Event and Dedicated Packages</h3>
 					<h5 class="mb-4">
@@ -94,7 +79,7 @@
 					</h5>
 				</div>
 			</div>
-		</section> --}}
+		</section>
 		@include('frontend.layouts.bottom')
 	</div>
 @include('layouts.footer')
