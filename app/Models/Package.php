@@ -13,7 +13,6 @@ class Package extends Model
     protected $fillable = [
         'name',
         'price',
-        'size',
         'setup_fee',
         'speed',
         'bandwidth',
@@ -21,6 +20,7 @@ class Package extends Model
         'period',
         'duration',
         'active',
+        'devices'
     ];
 
     /**

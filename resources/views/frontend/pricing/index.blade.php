@@ -31,7 +31,7 @@
 												{{ empty($package->speed) ? 'Nill' : 'Up to '.$package->speed }}Mbps
 											</div>
 											<div class="pb-3 mb-3 px-3 border-bottom text-dark">
-												{{ empty($package->price) ? 'Nill' : 'NGN'.number_format((int)$package->price) }} {{ ucwords($package->period) }}
+												{{ empty($package->price) ? 'Nill' : 'NGN'.number_format((int)$package->price) }} for {{ ucwords($package->duration) }}Days
 											</div>
 											<div class="pb-3 px-3 text-dark border-bottom mb-3">
 											{{ empty($package->setup_fee) ? 'Nill' : 'NGN'.number_format((int)$package->setup_fee).' One-off setup fee'; }}

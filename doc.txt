@@ -1,0 +1,19 @@
+Meanwhile part of the things we need you to work on the website are:
+
+1. Forms: Prospects and already deployed clients should be able to fill forms online. Admin should also be able to this incase the client filled the form on paper. 
+
+2. Customers should be listed according to their towers and sectors they are connected to.
+
+3. Customers can pay online. You have the payment gateway details
+
+4. Template for mail and sms should be branded
+
+5. Automated mail to customers within selected days
+
+6. Tag customers to tower's
+
+7. Search for customer by any category. Categories are month of subscription, month of expiration, tower, sector connected to, radio ip, date of payment.
+
+8. One should be able to pull customer record from registration details to payment statement. 
+
+9. Save mail messages.

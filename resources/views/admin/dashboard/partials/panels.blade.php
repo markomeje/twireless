@@ -25,10 +25,12 @@
         <div class="row">
           <div class="col-8">
             <div class="numbers">
-              <a href="{{ route('admin.stations') }}">
-                <p class="text-sm mb-0 font-weight-bold m-0">All Stations</p>
+              <a href="{{ route('admin.sectors') }}">
+                <p class="text-sm mb-0 font-weight-bold m-0">All Sectors</p>
               </a>
-              <h5 class="font-weight-bolder">12</h5>
+              <h5 class="font-weight-bolder">
+                {{ \App\Models\Sector::count() }}
+              </h5>
             </div>
           </div>
           <div class="col-4 text-end">

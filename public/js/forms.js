@@ -2,6 +2,11 @@
 
 	'use strict';
 
+    $('.edit-package-form').submit(function(event){
+        event.preventDefault();
+        handleForm({form: $(this), button: 'edit-package-button', spinner: 'edit-package-spinner', message: 'edit-package-message'});
+    });
+
     $('.add-subscription-form').submit(function(event){
         event.preventDefault();
         handleForm({form: $(this), button: 'add-subscription-button', spinner: 'add-subscription-spinner', message: 'add-subscription-message'});

@@ -31,7 +31,6 @@ class PackagesController extends Controller
             'duration' => ['required'],
             'speed' => ['required'],
             'setup_fee' => ['required'],
-            'period' => ['required'],
             'devices' => ['required'],
         ]);
 
@@ -44,7 +43,6 @@ class PackagesController extends Controller
 
         try {
             $package = Package::create([
-                'size' => $data['size'] ?? null,
                 'duration' => $data['duration'],
                 'name' => $data['name'],
                 'setup_fee' => $data['setup_fee'],
@@ -52,7 +50,7 @@ class PackagesController extends Controller
                 'bandwidth' => 'Unlimited',
                 'price' => $data['price'],
                 'devices' => $data['devices'],
-                'period' => $data['period'],
+                'period' => $data['period'] ?? '',
             ]);
 
             if (empty($package)) {
@@ -65,6 +63,69 @@ class PackagesController extends Controller
             return response()->json([
                 'status' => 1,
                 'info' => 'Operation successful',
+                'redirect' => ''
+            ]);
+
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 0,
+                'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
+            ]);
+        }
+    }
+
+    /**
+     * 
+     * @return json
+     */
+    public function edit($id = 0)
+    {
+        $data = request()->all();
+        $validator = Validator::make($data, [ 
+            'price' => ['required'],
+            'name' => ['required'],
+            'duration' => ['required'],
+            'speed' => ['required'],
+            'setup_fee' => ['required'],
+            'devices' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        try {
+            $package = Package::find($id);
+            if (empty($package)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'Invalid Package',
+                ]); 
+            }
+
+            $package->duration = $data['duration'];
+            $package->name = $data['name'];
+            $package->setup_fee = $data['setup_fee'];
+            $package->speed = $data['speed'];
+            $package->bandwidth = 'Unlimited';
+            $package->price = $data['price'];
+            $package->devices = $data['devices'];
+            $package->period = $data['period'] ?? '';
+            
+            if ($package->update()) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Operation successful',
+                    'redirect' => ''
+                ]);
+            }
+
+            return response()->json([
+                'status' => 0,
+                'info' => 'Operation failed',
                 'redirect' => ''
             ]);
 

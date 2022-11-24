@@ -17,33 +17,9 @@
               <small class="name-error text-danger"></small>
             </div>
             <div class="form-group col-md-6">
-              <label class="text-muted">Price (NGN)</label>
-              <input type="number" name="price" class="form-control price" placeholder="Enter price">
-              <small class="price-error text-danger"></small>
-            </div>
-          </div>
-          <div class="row">
-            <div class="form-group col-md-6">
               <label class="text-muted">Duration (In Days)</label>
               <input type="number" name="duration" class="form-control duration" placeholder="Enter duration" value="30">
               <small class="duration-error text-danger"></small>
-            </div>
-            <div class="form-group col-md-6">
-              <label class="text-muted">Period</label>
-              <select class="form-control custom-select period" name="period">
-                <option value="">Select Period</option>
-                <?php $periods = \App\Models\Package::$periods; ?>
-                @if(empty($periods))
-                  <option value="">No periods listed</option>
-                @else
-                  @foreach($periods as $period)
-                    <option value="{{ $period }}">
-                      {{ ucfirst($period) }}
-                    </option>
-                  @endforeach
-                @endif
-              </select>
-              <small class="period-error text-danger"></small>
             </div>
           </div>
           <div class="row">
@@ -60,7 +36,7 @@
           </div>
           <div class="row">
             <div class="form-group col-md-6">
-              <label class="text-muted">Setup Fee</label>
+              <label class="text-muted">Setup Fee (NGN)</label>
               <input type="number" name="setup_fee" class="form-control setup_fee" placeholder="Enter setup fee">
               <small class="setup_fee-error text-danger"></small>
             </div>

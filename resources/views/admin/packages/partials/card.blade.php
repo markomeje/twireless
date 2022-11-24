@@ -1,19 +1,19 @@
 <div class="card">
 	<div class="card-body">
 		<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-			<div class="cursor-pointer text-dark" data-toggle="modal" data-target="#edit-package-{{ $package->id }}">
-				NGN{{ number_format($package->price) }}
+			<div class="cursor-pointer text-underline" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
+				{{ ucwords(\Str::limit($package->name, 14)) }}
 			</div>
-			<div class="text-dark">
-				{{ ucfirst($package->period) }}
+			<div class="cursor-pointer text-dark" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
+				{{ $package->speed }}Mbps
 			</div>
 		</div>
 		<div class="d-flex align-items-center justify-content-between">
-			<div class="cursor-pointer text-underline" data-toggle="modal" data-target="#edit-package-{{ $package->id }}">
-				{{ ucwords(\Str::limit($package->name, 10)) }}
+			<div class="cursor-pointer text-dark" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
+				NGN{{ number_format($package->price) }}
 			</div>
-			<div class="text-dark">
-				{{ $package->speed }}Mbps
+			<div class="text-dark cursor-pointer text-underline" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
+				{{ number_format($package->duration) }}Days
 			</div>
 		</div>
 	</div>
@@ -25,7 +25,7 @@
 			<small class="text-danger me-2">
 				<i class="icofont-trash"></i>
 			</small>
-			<a href="javascript:;" class="text-warning" data-toggle="modal" data-target="#edit-package-{{ $package->id }}">
+			<a href="javascript:;" class="text-warning" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
 				<small class="">
 					<i class="icofont-edit"></i>
 				</small>
