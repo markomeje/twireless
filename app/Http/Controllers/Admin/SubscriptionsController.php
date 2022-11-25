@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Models\Subscription;
+use App\Models\{Subscription, Package, Bundle};
 use Validator;
 
 class SubscriptionsController extends Controller
@@ -23,13 +23,14 @@ class SubscriptionsController extends Controller
     {
         $data = request()->all();
         $validator = Validator::make($data, [ 
-            'price' => ['required'],
-            'name' => ['required'],
-            'duration' => ['required'],
-            'speed' => ['required'],
-            'setup_fee' => ['required'],
-            'period' => ['required'],
-            'devices' => ['required'],
+            'antenna' => ['required'],
+            'polewire_length' => ['required'],
+            'customer' => ['required'],
+            'coordinate' => ['required'],
+            'last_mile' => ['required'],
+            'concurrent_users' => ['required'],
+            'additional_info' => ['nullable', 'max:500'],
+            'sector' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -43,19 +44,50 @@ class SubscriptionsController extends Controller
         if (!str_contains($plan, '_')) {
             return response()->json([
                 'status' => 0,
-                'info' => 'Invalid Plan',
+                'info' => 'Invalid subscription plan',
+            ]);
+        }
+
+        $plans = ['bundle', 'package'];
+        [$type, $plan_id] = explode('_', $plan);
+        if (!in_array($type, $plans)) {
+            return response()->json([
+                'status' => 0,
+                'info' => 'Invalid subscription plan',
+            ]);
+        }
+
+        switch ($plan) {
+            case 'bundle':
+                $plan = Bundle::find($plan_id);
+                break;
+            default:
+                $plan = Package::find($plan_id);
+                break;
+        }
+
+        if (empty($plan)) {
+            return response()->json([
+                'status' => 0,
+                'info' => 'Invalid subscription plan',
             ]);
         }
 
         try {
             $subscription = Subscription::create([
-                'size' => $data['size'] ?? null,
-                'antenna' => $data['antenna'],
-                'coordinate' => $data['coordinate'],
+                'plan' => $type,
+                'additional_info' => $data['additional_info'] ?? '',
                 'concurrent_users' => $data['concurrent_users'],
-                'plan_id' => $data['plan'],
+                'antenna' => $data['antenna'],
+                'sector_id' => $data['sector'],
+                'plan_id' => $plan->id,
                 'last_mile' => $data['last_mile'],
-                'amount' => $data['amount'],
+                'coordinate' => $data['coordinate'],
+                'polewire_length' => $data['polewire_length'],
+                'addedby' => auth()->id(),
+                'active' => false,
+                'customer_id' => $data['customer'],
+                'status' => 'initialized',
             ]);
 
             if (empty($subscription)) {
@@ -94,5 +126,10 @@ class SubscriptionsController extends Controller
                 'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
             ]);
         }
+    }
+
+    public function subscription($id = 0)
+    {
+        return view('admin.subscriptions.subscription', ['subscription' => Subscription::find($id)]);
     }
 }

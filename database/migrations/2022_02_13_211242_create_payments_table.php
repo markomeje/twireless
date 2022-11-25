@@ -16,6 +16,14 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('amount');
+            $table->string('product');
+            $table->string('type')->default('paystack');
+            $table->string('status')->default('initialized');
+            $table->foreignId('product_id');
+            $table->string('reference');
+            $table->boolean('deleted')->default(false);
+            $table->dateTime('deleted_at')->nullable();
+            $table->foreignId('customer_id'); 
             $table->timestamps();
         });
     }

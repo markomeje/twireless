@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered" role="customer">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="add-subscription-modal">Add Customer</h5>
+        <h5 class="modal-title" id="add-subscription-modal">Add Subscription</h5>
         <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close">
           <i class="icofont-close"></i>
         </button>
@@ -12,27 +12,45 @@
         @csrf
         <div class="modal-body">
           <div class="row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-12">
               <label class="text-muted">Customer</label>
               <select class="form-control customer" name="customer">
-                <option value="">Select Customer</option>
                 <?php $customers = \App\Models\Customer::latest('created_at')->get(); ?>
                 @if(empty($customers->count()))
                   <option value="">No customers listed</option>
                 @else
                   @foreach($customers as $customer)
                     <option value="{{ $customer->id }}">
-                      {{ ucwords($customer->contact_name) }}
+                      {{ ucwords($customer->contact_name) }} ({{ ucwords($customer->company_name) }})
                     </option>
                   @endforeach
                 @endif
               </select>
               <small class="customer-error text-danger"></small>
             </div>
+          </div>
+          <div class="row">
             <div class="form-group col-md-6">
               <label class="text-muted">Antenna</label>
               <input type="text" name="antenna" class="form-control antenna" placeholder="Enter antenna">
               <small class="antenna-error text-danger"></small>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="text-muted">Sector</label>
+              <select class="form-control sector" name="sector">
+                <option value="">Select sectors</option>
+                <?php $sectors = \App\Models\Sector::all(); ?>
+                @if(empty($sectors->count()))
+                  <option value="">No sectors listed</option>
+                @else
+                  @foreach($sectors as $sector)
+                    <option value="{{ $sector->id }}">
+                      {{ ucwords($sector->name) }}
+                    </option>
+                  @endforeach
+                @endif
+              </select>
+              <small class="sector-error text-danger"></small>
             </div>
           </div>
           <div class="row">
@@ -56,21 +74,25 @@
                 @if(!empty($bundles->count()))
                   @foreach($bundles as $bundle)
                     <option value="bundle_{{ $bundle->id }}">
-                      {{ ucwords($bundle->size) }}Gb
+                      {{ ucwords($bundle->size) }}Gb Bundle for NGN{{ number_format($bundle->price) }}
                     </option>
                   @endforeach
                 @endif
-
                 <?php $packages = \App\Models\Package::all(); ?>
                 @if(!empty($packages->count()))
                   @foreach($packages as $package)
                     <option value="package_{{ $package->id }}">
-                      {{ ucwords($package->name) }}
+                      {{ ucwords($package->name) }} for NGN{{ number_format($package->price) }}
                     </option>
                   @endforeach
                 @endif
               </select>
               <small class="package-error text-danger"></small>
+            </div>
+            <div class="form-group col-md-6">
+              <label class="text-muted">Router</label>
+              <input type="text" name="router" class="form-control router" placeholder="Enter Router">
+              <small class="router-error text-danger"></small>
             </div>
           </div>
           <div class="row">

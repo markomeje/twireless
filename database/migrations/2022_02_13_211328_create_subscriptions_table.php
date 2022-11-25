@@ -16,10 +16,10 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id');
-            $table->bigInteger('amount')->nullable();
+            $table->foreignId('sector_id');
+            $table->string('plan')->nullable();
+            $table->foreignId('plan_id');
             $table->timestamp('start_date')->nullable();
-            $table->foreignId('model_id');
-            $table->string('model');
             $table->timestamp('expiry_date')->nullable();
             $table->string('antenna')->nullable();
             $table->string('polewire_length')->nullable();
@@ -29,6 +29,8 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('installation_date')->nullable();
             $table->text('additional_info')->nullable();
             $table->string('addedby')->nullable();
+            $table->string('status')->default('initialized');
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }
