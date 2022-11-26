@@ -21,7 +21,7 @@ class SubscriptionFactory extends Factory
         return [
             'duration' => $duration,
             'status' => $faker->randomElement(Subscription::$status),
-            'user_id' => rand(1, User::count()),
+            'customer_id' => rand(1, Customer::count()),
             'renewals' => $faker->numberBetween(2, 9),
             'reference' => Str::random(64),
             'payment_id' => rand(1, Payment::count()),

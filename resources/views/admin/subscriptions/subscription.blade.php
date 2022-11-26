@@ -12,16 +12,54 @@
         @else
           <div class="row">
             <div class="col-12 col-md-6">
-              <div class="alert alert-info border-0 mb-4 d-flex align-items-center">
+              <div class="alert alert-info border-0 mb-4 d-flex align-items-center justify-content-between">
                 <div class="text-white me-2">
-                  Subscriptions
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-header border-bottom d-flex justify-content-between align-items-center">
                   {{ ucwords($subscription->customer->company_name) }} Subscription
                 </div>
+              </div>
+              <div class="card mb-4">
+                <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                  <div>
+                    @if($subscription->plan == 'bundle')
+                      {{ $subscription->bundle->size }}Gb Bundle Plan (NGN{{ number_format($subscription->bundle->price) }})
+                    @else
+                      {{ ucwords($subscription->package->name) }} (NGN{{ number_format($subscription->package->price) }})
+                    @endif
+                  </div>
+                  <div class="text-dark">
+                    <i class="icofont-options"></i>
+                  </div>
+                </div>
                 <div class="card-body">
+                  <div class="mb-3 pb-3 border-bottom">
+                    {{ number_format($subscription->duration ?? 0) }}Days
+                  </div>
+                  <?php $payment = $subscription->payment($subscription->plan); ?>
+                  @if(empty($payment))
+                    <div class="text-danger mb-3 pb-3 border-bottom">Not Paid</div>
+                  @else
+                    <div class="text-dark mb-3 pb-3 border-bottom">
+                      {{ ucfirst($payment->status) }}
+                    </div>
+                  @endif
+                  <div class="row">
+                    @if($subscription->status == 'active')
+                      <div class="col-12 col-md-6">
+                        <a class="btn btn-info"></a>
+                      </div>
+                    @else
+
+                    @endif
+                    <div class="col-12 col-md-6">
+                      <a class="btn btn-info"></a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <form class="edit-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.edit', ['id' => $subscription->id]) }}">
+                  @csrf
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label class="text-muted">Antenna</label>
@@ -49,115 +87,44 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label class="text-muted">Pole Wire Length</label>
-                      <input type="text" name="polewire_length" class="form-control polewire_length" placeholder="Enter Pole wire length">
+                      <input type="text" name="polewire_length" class="form-control polewire_length" placeholder="Enter Pole wire length" value="{{ $subscription->polewire_length }}">
                       <small class="polewire_length-error text-danger"></small>
                     </div>
                     <div class="form-group col-md-6">
                       <label class="text-muted">Coordinate</label>
-                      <input type="text" name="coordinate" class="form-control coordinate" placeholder="Enter coordinate">
+                      <input type="text" name="coordinate" class="form-control coordinate" placeholder="Enter coordinate" value="{{ $subscription->coordinate }}">
                       <small class="coordinate-error text-danger"></small>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="form-group col-md-6">
-                      <label class="text-muted">Plan</label>
-                      <select class="form-control plan" name="plan">
-                        <option value="">Select Plan</option>
-                        <?php $bundles = \App\Models\Bundle::all(); ?>
-                        @if(!empty($bundles->count()))
-                          @foreach($bundles as $bundle)
-                            <option value="bundle_{{ $bundle->id }}">
-                              {{ ucwords($bundle->size) }}Gb Bundle for NGN{{ number_format($bundle->price) }}
-                            </option>
-                          @endforeach
-                        @endif
-                        <?php $packages = \App\Models\Package::all(); ?>
-                        @if(!empty($packages->count()))
-                          @foreach($packages as $package)
-                            <option value="package_{{ $package->id }}">
-                              {{ ucwords($package->name) }} for NGN{{ number_format($package->price) }}
-                            </option>
-                          @endforeach
-                        @endif
-                      </select>
-                      <small class="package-error text-danger"></small>
-                    </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-12">
                       <label class="text-muted">Router</label>
-                      <input type="text" name="router" class="form-control router" placeholder="Enter Router">
+                      <input type="text" name="router" class="form-control router" placeholder="Enter Router" value="{{ $subscription->router }}">
                       <small class="router-error text-danger"></small>
                     </div>
                   </div>
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label class="text-muted">Concurrent Users</label>
-                      <input type="text" name="concurrent_users" class="form-control concurrent_users" placeholder="Enter Pole wire length">
+                      <input type="text" name="concurrent_users" class="form-control concurrent_users" placeholder="Enter Pole wire length" value="{{ $subscription->concurrent_users }}">
                       <small class="concurrent_users-error text-danger"></small>
                     </div>
                     <div class="form-group col-md-6">
                       <label class="text-muted">Last Mile</label>
-                      <input type="text" name="last_mile" class="form-control last_mile" placeholder="Enter last mile">
+                      <input type="text" name="last_mile" class="form-control last_mile" placeholder="Enter last mile" value="{{ $subscription->last_mile }}">
                       <small class="last_mile-error text-danger"></small>
                     </div>
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="form-group mb-4">
                     <label class="text-muted">Additional info</label>
-                    <textarea class="form-control additional_info" name="additional_info" rows="4" placeholder="Additional info"></textarea>
+                    <textarea class="form-control additional_info" name="additional_info" rows="4" placeholder="Additional info">{{ $subscription->additional_info }}</textarea>
                     <small class="additional_info-error text-danger"></small>
                   </div>
-
-                  <div class="pb-3 mb-3 border-bottom">
-                    @if($subscription->plan == 'bundle')
-                      {{ $subscription->bundle->size }}Gb Bundle Plan
-                    @else
-                      {{ ucwords($subscription->package->name) }}
-                    @endif
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    {{ number_format($subscription->duration ?? 0) }}Days
-                  </div>
-                  <?php $payment = $subscription->payment($subscription->plan); ?>
-                  @if(empty($payment))
-                    <div class="text-danger mb-3 pb-3 border-bottom">Not Paid</div>
-                  @else
-                    <div class="text-dark mb-3 pb-3 border-bottom">
-                      {{ ucfirst($payment->status) }}
-                    </div>
-                  @endif
-                  <div class="mb-3 pb-3 border-bottom">
-                    Pole Wire Length {{ $subscription->polewire_length }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Concurrent Users {{ $subscription->concurrent_users }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Pole Wire Length {{ $subscription->polewire_length }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Antenna {{ $subscription->antenna }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Additional Info {{ $subscription->additional_info }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Last Mile Connection {{ $subscription->last_mile }}
-                  </div>
-                  <div class="mb-3 pb-3 border-bottom">
-                    Coordinate {{ $subscription->coordinate }}
-                  </div>
-                  <div class="row">
-                    @if($subscription->status == 'active')
-                      <div class="col-12 col-md-6">
-                        <a class="btn btn-info"></a>
-                      </div>
-                    @else
-
-                    @endif
-                    <div class="col-12 col-md-6">
-                      <a class="btn btn-info"></a>
-                    </div>
-                  </div>
-                </div>
+                  <div class="alert d-none add-subscription-message mb-3 text-white"></div>
+                  <button type="submit" class="btn btn-primary edit-subscription-button">
+                    <img src="/images/svgs/spinner.svg" class="me-2 d-none edit-subscription-spinner mb-1">Save
+                  </button>
+                </form>
               </div>
             </div>
           </div> 

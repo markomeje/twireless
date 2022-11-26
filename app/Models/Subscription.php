@@ -27,10 +27,15 @@ class Subscription extends Model
         'concurrent_users',
         'active',
         'installation_date',
-        'addedby',
+        'subscribed_by',
+        'subscriber_type',
         'additional_info',
         'status',
-        'sector_id'
+        'sector_id',
+        'router',
+        'deleted',
+        'deleted_at',
+        'renewals',
     ];
 
     /**

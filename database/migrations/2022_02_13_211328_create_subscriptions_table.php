@@ -22,15 +22,21 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('start_date')->nullable();
             $table->timestamp('expiry_date')->nullable();
             $table->string('antenna')->nullable();
+            $table->string('router')->nullable();
             $table->string('polewire_length')->nullable();
+            $table->integer('renewals')->nullable();
             $table->string('coordinate')->nullable();
             $table->string('last_mile')->nullable();
             $table->string('concurrent_users')->nullable();
             $table->timestamp('installation_date')->nullable();
             $table->text('additional_info')->nullable();
-            $table->string('addedby')->nullable();
+            $table->foreignId('subscribed_by')->nullable();
+            $table->string('subscriber_type')->default('staff');
             $table->string('status')->default('initialized');
             $table->boolean('active')->default(false);
+
+            $table->boolean('deleted')->default(false);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

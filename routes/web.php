@@ -88,6 +88,7 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
         Route::get('/subscription/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'subscription'])->name('admin.subscription');
         Route::post('/add', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'add'])->name('admin.subscription.add');
         Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
+        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
     });
 
     Route::get('/plans', [\App\Http\Controllers\Admin\PlansController::class, 'index'])->name('admin.plans');

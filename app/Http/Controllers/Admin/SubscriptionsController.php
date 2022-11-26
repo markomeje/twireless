@@ -31,6 +31,7 @@ class SubscriptionsController extends Controller
             'concurrent_users' => ['required'],
             'additional_info' => ['nullable', 'max:500'],
             'sector' => ['required'],
+            'router' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -84,9 +85,11 @@ class SubscriptionsController extends Controller
                 'last_mile' => $data['last_mile'],
                 'coordinate' => $data['coordinate'],
                 'polewire_length' => $data['polewire_length'],
-                'addedby' => auth()->id(),
+                'subscribed_by' => auth()->id(),
+                'subscriber_type' => 'staff',
                 'active' => false,
                 'customer_id' => $data['customer'],
+                'router' => $data['router'],
                 'status' => 'initialized',
             ]);
 
@@ -100,7 +103,7 @@ class SubscriptionsController extends Controller
             return response()->json([
                 'status' => 1,
                 'info' => 'Operation successful',
-                'redirect' => ''
+                'redirect' => route('admin.subscription', ['id' => $subscription->id])
             ]);
 
         } catch (Exception $error) {
