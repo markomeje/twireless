@@ -51,7 +51,7 @@
                         @if(auth()->check())
                             <?php if(auth()->user()->role === 'admin'): ?>
                                 <li class="ml-4">
-                                    <a href="{{ env('ADMIN_URL') }}" class="text-white" target="_blank">Admin</a>
+                                    <a href="{{ env('ADMIN_URL') }}" class="text-white">Admin</a>
                                 </li>
                             <?php elseif(strtolower(auth()->user()->role) === 'customer'): ?>
                                 <li class="ml-4">

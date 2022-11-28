@@ -1,11 +1,10 @@
 <?php
 
 namespace Database\Factories;
-use App\Models\{Membership, Subscription, User, Payment};
+use App\Models\{Customer, Sector, Package};
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as Faker;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class SubscriptionFactory extends Factory
 {
@@ -17,17 +16,16 @@ class SubscriptionFactory extends Factory
     public function definition()
     {
         $faker = Faker::create();
-        $duration = array_rand(array_flip(Membership::$durations));
         return [
-            'duration' => $duration,
-            'status' => $faker->randomElement(Subscription::$status),
             'customer_id' => rand(1, Customer::count()),
-            'renewals' => $faker->numberBetween(2, 9),
-            'reference' => Str::random(64),
-            'payment_id' => rand(1, Payment::count()),
-            'started' => Carbon::now(),
-            'membership_id' => rand(1, Membership::count()),
-            'expiry' => Carbon::now()->addDays($duration),
+            'sector_id' => rand(1, Sector::count()),
+            'plan_id' => $faker->randomElement(Package::all()->pluck('id')->toArray()),
+            'plan' => 'package',
+            'antenna' => $faker->randomNumber($nbDigits = 9),
+            'router' => $faker->ipv4(),
+            'polewire_length' => $faker->randomNumber($nbDigits = 5),
+            'coordinate' => rand(12000, 90888),
+            'status' => 'initialized',
         ];
     }
 }

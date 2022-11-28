@@ -2,7 +2,7 @@
 <div class="card border-0">
 	<div class="card-body">
 		<div class="d-flex align-items-center justify-content-between mb-3">
-			<a class="text-dark text-underline cursor-pointer" href="{{ route('admin.subscription', ['id' => $subscription->id]) }}">
+			<a class="text-dark cursor-pointer" href="{{ route('admin.subscription', ['id' => $subscription->id]) }}">
 				<em>By</em> {{ ucwords(\Str::limit($subscription->customer->contact_name, 12)) }}
 			</a>
 			<a class="text-dark" href="{{ route('admin.subscription', ['id' => $subscription->id]) }}">

@@ -19,19 +19,20 @@ class CreateSubscriptionsTable extends Migration
             $table->foreignId('sector_id');
             $table->string('plan')->nullable();
             $table->foreignId('plan_id');
+
             $table->timestamp('start_date')->nullable();
             $table->timestamp('expiry_date')->nullable();
             $table->string('antenna')->nullable();
             $table->string('router')->nullable();
             $table->string('polewire_length')->nullable();
+
             $table->integer('renewals')->nullable();
             $table->string('coordinate')->nullable();
             $table->string('last_mile')->nullable();
             $table->string('concurrent_users')->nullable();
             $table->timestamp('installation_date')->nullable();
             $table->text('additional_info')->nullable();
-            $table->foreignId('subscribed_by')->nullable();
-            $table->string('subscriber_type')->default('staff');
+
             $table->string('status')->default('initialized');
             $table->boolean('active')->default(false);
 

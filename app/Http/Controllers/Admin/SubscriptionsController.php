@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\{Subscription, Package, Bundle};
 use Validator;
+use Carbon\Carbon;
 
 class SubscriptionsController extends Controller
 {
@@ -123,6 +124,49 @@ class SubscriptionsController extends Controller
     {
         try {
             $subscription = Subscription::find($id);
+            if (empty($subscription)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'Invalid subscription'
+                ]);
+            }
+
+            $status = strtolower($subscription->status);
+            if ($status !== 'initialized' || empty($status)) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Subscription may have been active',
+                    'redirect' => '',
+                ]);
+            }
+
+            $plan = $subscription->plan === 'bundle' ? $subscription->bundle : $subscription->package;
+            if (empty($plan)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'Invalid subscription plan',
+                ]);
+            }
+
+            $now = Carbon::now();
+            $subscription->start_date = $now;
+            $subscription->expiry_date = $now->addDays($plan->duration ?? 30);
+            $subscription->status = 'active';
+            $subscription->active = false;
+
+            if ($subscription->update()) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Operation successful',
+                    'redirect' => ''
+                ]);
+            }
+
+            return response()->json([
+                'status' => 0,
+                'info' => 'Operation failed.',
+            ]);
+
         } catch (Exception $error) {
             return response()->json([
                 'status' => 0,

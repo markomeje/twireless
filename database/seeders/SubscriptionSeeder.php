@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
-use App\Models\Payment;
+use App\Models\Subscription;
 
-class PaymentsSeeder extends Seeder
+class SubscriptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +13,8 @@ class PaymentsSeeder extends Seeder
      */
     public function run()
     {
-        Payment::truncate();
-        Payment::factory()->count(401)->create();
+        Subscription::truncate();
+        Subscription::factory()->count(124)->create();
     }
+
 }

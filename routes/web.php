@@ -57,7 +57,6 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
 
 Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(function() {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::get('/payments', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.payments');
 
     Route::prefix('customers')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\CustomersController::class, 'index'])->name('admin.customers');
@@ -87,14 +86,16 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
         Route::get('/', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
         Route::get('/subscription/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'subscription'])->name('admin.subscription');
         Route::post('/add', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'add'])->name('admin.subscription.add');
-        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
-        Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
+        Route::post('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
+
+        Route::post('/activate/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'activate'])->name('admin.subscription.activate');
     });
 
     Route::get('/plans', [\App\Http\Controllers\Admin\PlansController::class, 'index'])->name('admin.plans');
 
     Route::prefix('payments')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\PaymentsController::class, 'index'])->name('admin.payments');
+        Route::post('/add', [\App\Http\Controllers\Admin\PaymentsController::class, 'add'])->name('admin.payment.add');
     });
 });
 

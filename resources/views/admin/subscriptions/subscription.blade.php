@@ -10,20 +10,21 @@
         @if(empty($subscription))
           <div class="alert alert-danger border-0 mb-4">Subscription not found.</div>
         @else
+          <?php $plan = $subscription->plan; $customer = $subscription->customer; $price = $plan === 'bundle' ? $subscription->bundle->price : $subscription->package->price ?>
           <div class="row">
             <div class="col-12 col-md-6">
               <div class="alert alert-info border-0 mb-4 d-flex align-items-center justify-content-between">
                 <div class="text-white me-2">
-                  {{ ucwords($subscription->customer->company_name) }} Subscription
+                  {{ $customer->company_name ? ucwords($customer->company_name) : '' }} Subscription
                 </div>
               </div>
               <div class="card mb-4">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                   <div>
-                    @if($subscription->plan == 'bundle')
-                      {{ $subscription->bundle->size }}Gb Bundle Plan (NGN{{ number_format($subscription->bundle->price) }})
+                    @if($plan === 'bundle')
+                      {{ $subscription->bundle->size }}Gb Bundle Plan (NGN{{ number_format($price) }})
                     @else
-                      {{ ucwords($subscription->package->name) }} (NGN{{ number_format($subscription->package->price) }})
+                      {{ ucwords($subscription->package->name) }} (NGN{{ number_format($price) }})
                     @endif
                   </div>
                   <div class="text-dark">
@@ -34,25 +35,37 @@
                   <div class="mb-3 pb-3 border-bottom">
                     {{ number_format($subscription->duration ?? 0) }}Days
                   </div>
-                  <?php $payment = $subscription->payment($subscription->plan); ?>
+                  <?php $payment = $subscription->payment($plan); ?>
+                  
                   @if(empty($payment))
-                    <div class="text-danger mb-3 pb-3 border-bottom">Not Paid</div>
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                      <div class="text-danger">Not Paid</div>
+                      <a href="javascript:;" class="text-dark" data-bs-toggle="modal" data-bs-target="#add-payment">Add Payment</a>
+                      @include('admin.payments.partials.add')
+                    </div>
                   @else
-                    <div class="text-dark mb-3 pb-3 border-bottom">
+                    <div class="text-dark">
                       {{ ucfirst($payment->status) }}
                     </div>
                   @endif
                   <div class="row">
-                    @if($subscription->status == 'active')
-                      <div class="col-12 col-md-6">
-                        <a class="btn btn-info"></a>
+                    <?php $status = strtolower($subscription->status); ?>
+                    @if($status === 'active')
+                      <div class="col-12">
+                        <a class="btn btn-info w-100">Extend</a>
                       </div>
-                    @else
-
+                    @elseif($status === 'expired')
+                      <div class="col-12">
+                        <a class="btn btn-info w-100">Renew</a>
+                      </div>
+                    @elseif($status === 'initialized' || empty($status))
+                      <div class="col-12">
+                        <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
+                          <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
+                          <span class="font-weight-bolder">Activate</span>
+                        </a>
+                      </div>
                     @endif
-                    <div class="col-12 col-md-6">
-                      <a class="btn btn-info"></a>
-                    </div>
                   </div>
               </div>
             </div>
