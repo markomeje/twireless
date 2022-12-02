@@ -36,7 +36,7 @@
 								</div>
 							</div>
 							<div class="alert mt-4 px-3 login-message d-none"></div>
-							<button type="submit" class="btn btn-block btn-lg border-0 bg-primary px-5 text-white login-button">
+							<button type="submit" class="btn btn-block btn-lg border-0 bg-primary px-5 text-white login-button mb-4">
 								<img src="/images/svgs/spinner.svg" class="mr-2 d-none login-spinner mb-1">
 								Login
 							</button>

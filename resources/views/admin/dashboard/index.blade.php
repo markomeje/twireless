@@ -11,7 +11,7 @@
           <div class="row">
             @include('admin.dashboard.partials.panels')
           </div>
-          <div class="row mt-4">
+          <div class="row">
             <div class="col-12 mb-4">
               <div class="card z-index-2 border h-100">
                 <div class="card-header pb-0 pt-3 bg-transparent">

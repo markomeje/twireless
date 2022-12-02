@@ -16,18 +16,15 @@ class BundleSeeder extends Seeder
     public function run()
     {
         $bundles = [
-            ['size' => 75, 'price' => 15000],
-            ['size' => 100, 'price' => 20000],
-            ['size' => 125, 'price' => 25000],
-            ['size' => 250, 'price' => 50000],
+            ['size' => 75, 'price' => 15000, 'duration' => 30],
+            ['size' => 100, 'price' => 20000, 'duration' => 30],
+            ['size' => 125, 'price' => 25000, 'duration' => 30],
+            ['size' => 250, 'price' => 50000, 'duration' => 30],
         ];
 
         Bundle::truncate();
         foreach ($bundles as $bundle) {
-            Bundle::create([
-                'size' => $bundle['size'],
-                'price' => $bundle['price'],
-            ]);
+            Bundle::create($bundle);
         }
     }
 }

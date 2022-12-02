@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Payment;
-use Illuminate\Facades\Str;
+use Illuminate\Support\Str;
 use Exception;
 use Validator;
 

@@ -131,15 +131,6 @@ class SubscriptionsController extends Controller
                 ]);
             }
 
-            $status = strtolower($subscription->status);
-            if ($status !== 'initialized' || empty($status)) {
-                return response()->json([
-                    'status' => 1,
-                    'info' => 'Subscription may have been active',
-                    'redirect' => '',
-                ]);
-            }
-
             $plan = $subscription->plan === 'bundle' ? $subscription->bundle : $subscription->package;
             if (empty($plan)) {
                 return response()->json([
@@ -148,9 +139,8 @@ class SubscriptionsController extends Controller
                 ]);
             }
 
-            $now = Carbon::now();
-            $subscription->start_date = $now;
-            $subscription->expiry_date = $now->addDays($plan->duration ?? 30);
+            $subscription->start_date = Carbon::now();
+            $subscription->expiry_date = Carbon::now()->addDays($plan->duration ?? 30);
             $subscription->status = 'active';
             $subscription->active = false;
 

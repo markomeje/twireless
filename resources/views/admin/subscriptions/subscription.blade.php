@@ -22,51 +22,66 @@
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                   <div>
                     @if($plan === 'bundle')
-                      {{ $subscription->bundle->size }}Gb Bundle Plan (NGN{{ number_format($price) }})
+                      {{ $subscription->bundle->size }}Gb Bundle Plan
                     @else
-                      {{ ucwords($subscription->package->name) }} (NGN{{ number_format($price) }})
+                      {{ ucwords($subscription->package->name) }}
                     @endif
                   </div>
-                  <div class="text-dark">
-                    <i class="icofont-options"></i>
+                  <?php $status = strtolower($subscription->status); ?>
+                  <div class="text-{{ $status === 'active' ? 'success' : ($status === 'initialized' ? 'dark' : 'danger') }}">
+                    {{ ucwords($status) }}
                   </div>
                 </div>
                 <div class="card-body">
-                  <div class="mb-3 pb-3 border-bottom">
-                    {{ number_format($subscription->duration ?? 0) }}Days
-                  </div>
                   <?php $payment = $subscription->payment($plan); ?>
-                  
                   @if(empty($payment))
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                      <div class="text-danger">Not Paid</div>
-                      <a href="javascript:;" class="text-dark" data-bs-toggle="modal" data-bs-target="#add-payment">Add Payment</a>
-                      @include('admin.payments.partials.add')
-                    </div>
+                    <a href="javascript:;" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#add-payment">
+                      <span class="font-weight-bolder">Add Payment</span>
+                    </a>
+                    @include('admin.payments.partials.add')
                   @else
-                    <div class="text-dark">
-                      {{ ucfirst($payment->status) }}
+                    <div class="mb-3 d-flex justify-content-between">
+                      
+                      <div class="text-success">
+                        {{ ucfirst($payment->status) }}
+                      </div>
+                      <div class="text-dark">
+                        NGN{{ number_format($price) }}
+                      </div> 
+                    </div>
+                    <div class="">
+                      <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
+                      @if($status === 'active')
+                        <div class="p-2 border mb-3">
+                          <div class="progress" style="height: 10px;">
+                            <div class="progress-bar m-0"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                        <div class="mb-4 d-flex justify-content-between">
+                          <div class="text-dark">
+                            {{ $timing->daysleft() }} Days Left
+                          </div>
+                          <div class="text-dark">
+                            {{ $timing->progress() }}%
+                          </div>
+                        </div>
+                        <a class="btn btn-info d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend</a>
+                        @include('admin.subscriptions.partials.extend')
+                      @elseif($status === 'expired')
+                        <div class="">
+                          <a class="btn btn-info w-100">Renew</a>
+                        </div>
+                      @else
+                        <div class="">
+                          <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
+                            <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
+                            <span class="font-weight-bolder">Activate</span>
+                          </a>
+                        </div>
+                      @endif
                     </div>
                   @endif
-                  <div class="row">
-                    <?php $status = strtolower($subscription->status); ?>
-                    @if($status === 'active')
-                      <div class="col-12">
-                        <a class="btn btn-info w-100">Extend</a>
-                      </div>
-                    @elseif($status === 'expired')
-                      <div class="col-12">
-                        <a class="btn btn-info w-100">Renew</a>
-                      </div>
-                    @elseif($status === 'initialized' || empty($status))
-                      <div class="col-12">
-                        <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
-                          <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
-                          <span class="font-weight-bolder">Activate</span>
-                        </a>
-                      </div>
-                    @endif
-                  </div>
+                    
               </div>
             </div>
             <div class="card">
@@ -134,7 +149,7 @@
                     <small class="additional_info-error text-danger"></small>
                   </div>
                   <div class="alert d-none add-subscription-message mb-3 text-white"></div>
-                  <button type="submit" class="btn btn-primary edit-subscription-button">
+                  <button type="submit" class="btn btn-primary edit-subscription-button w-100">
                     <img src="/images/svgs/spinner.svg" class="me-2 d-none edit-subscription-spinner mb-1">Save
                   </button>
                 </form>
