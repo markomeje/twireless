@@ -22,9 +22,9 @@
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                   <div>
                     @if($plan === 'bundle')
-                      {{ $subscription->bundle->size }}Gb Bundle Plan
+                      {{ $subscription->bundle->size }}Gb Bundle Plan 
                     @else
-                      {{ ucwords($subscription->package->name) }}
+                      {{ ucwords($subscription->package->name) }} 
                     @endif
                   </div>
                   <?php $status = strtolower($subscription->status); ?>
@@ -40,30 +40,39 @@
                     </a>
                     @include('admin.payments.partials.add')
                   @else
-                    <div class="mb-3 d-flex justify-content-between">
+                    <div class="alert alert-dark mb-3 d-flex justify-content-between">
                       
                       <div class="text-success">
                         {{ ucfirst($payment->status) }}
                       </div>
-                      <div class="text-dark">
+                      <div class="text-white">
                         NGN{{ number_format($price) }}
                       </div> 
                     </div>
                     <div class="">
                       <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
                       @if($status === 'active')
+                        <div class="mb-3 d-flex justify-content-between">
+                        
+                          <small class="text-dark">
+                            Started  {{ date('F j, Y', strtotime($subscription->start_date)) }}
+                          </small>
+                          <small class="text-dark">
+                            Expiring  {{ date('F j, Y', strtotime($subscription->expiry_date)) }}
+                          </small> 
+                        </div>
                         <div class="p-2 border mb-3">
                           <div class="progress" style="height: 10px;">
                             <div class="progress-bar m-0"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
                           </div>
                         </div>
                         <div class="mb-4 d-flex justify-content-between">
-                          <div class="text-dark">
+                          <small class="text-dark">
                             {{ $timing->daysleft() }} Days Left
-                          </div>
-                          <div class="text-dark">
-                            {{ $timing->progress() }}%
-                          </div>
+                          </small>
+                          <small class="text-dark">
+                            {{ $timing->progress() }}% Progress
+                          </small>
                         </div>
                         <a class="btn btn-info d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend</a>
                         @include('admin.subscriptions.partials.extend')
@@ -81,10 +90,23 @@
                       @endif
                     </div>
                   @endif
-                    
+              </div>
+            </div>
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="alert alert-dark text-white mb-4">Notify Subscriber - Email or Sms</div>
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark">Send Email</a>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark">Send Sms</a>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="card">
+              <div class="card-header border-bottom">Edit Subscription Details</div>
               <div class="card-body">
                 <form class="edit-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.edit', ['id' => $subscription->id]) }}">
                   @csrf

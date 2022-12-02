@@ -47,6 +47,7 @@ class Timing
 		$daysleft = ($duration - $started->diffInDays(Carbon::now()));
 		$daysleft = (empty($daysleft) || $daysleft <= 0) ? 0 : $daysleft;
 
+		$duration = $duration <= 0 ? 1 : $duration;
 		$fraction = $duration >= $daysleft ? ($daysleft/$duration) : 0;
 		$progress = (int)round(100 - ($fraction * 100));
 		$expired = empty($expiry) ? false : ($progress >= 100 ? true : false);

@@ -142,7 +142,7 @@ class SubscriptionsController extends Controller
             $subscription->start_date = Carbon::now();
             $subscription->expiry_date = Carbon::now()->addDays($plan->duration ?? 30);
             $subscription->status = 'active';
-            $subscription->active = false;
+            $subscription->active = true;
 
             if ($subscription->update()) {
                 return response()->json([
@@ -169,4 +169,75 @@ class SubscriptionsController extends Controller
     {
         return view('admin.subscriptions.subscription', ['subscription' => Subscription::find($id)]);
     }
+
+    /**
+     * Activate Subscription
+     * 
+     * @return json
+     */
+    public function extend($id = 0)
+    {
+        $data = request()->all();
+        $validator = Validator::make($data, [ 
+            'days' => ['required', 'integer'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        try {
+            $subscription = Subscription::find($id);
+            if (empty($subscription)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'Invalid subscription'
+                ]);
+            }
+
+            $subscription->expiry_date = Carbon::parse($subscription->expiry_date)->addDays($data['days']);
+            $subscription->status = 'active';
+            $subscription->active = true;
+
+            if ($subscription->update()) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Operation successful',
+                    'redirect' => ''
+                ]);
+            }
+
+            return response()->json([
+                'status' => 0,
+                'info' => 'Operation failed.',
+            ]);
+
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 0,
+                'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
+            ]);
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

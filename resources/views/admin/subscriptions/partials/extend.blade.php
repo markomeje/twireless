@@ -7,14 +7,16 @@
           <i class="icofont-close"></i>
         </button>
       </div>
-
-      <form class="extend-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.add') }}">
+      <form class="extend-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.extend', ['id' => $subscription->id]) }}">
         @csrf
         <div class="modal-body">
+          <div class="alert alert-info mb-3 text-white">
+            Expiry Date ({{ date('F j, Y', strtotime($subscription->expiry_date)) }})
+          </div>
           <div class="form-group">
-            <label class="text-muted">Expiry Date</label>
-            <input type="datetime" name="expiry_date" class="form-control expiry_date" placeholder="Enter expiry_date" value="{{ date('d-m-Y', strtotime($subscription->expiry_date)) }}">
-            <small class="expiry_date-error text-danger"></small>
+            <label class="text-muted">Add Days</label>
+            <input type="number" name="days" class="form-control days" placeholder="Enter days" min="2">
+            <small class="days-error text-danger"></small>
           </div>
           <div class="alert d-none extend-subscription-message mb-2 text-white"></div>
         </div>
