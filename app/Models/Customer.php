@@ -44,4 +44,22 @@ class Customer extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    /**
+     * A Customer may have many subscriptions
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'customer_id');
+    }
 }
+
+
+
+
+
+
+
+
+
+

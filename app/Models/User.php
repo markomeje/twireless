@@ -43,4 +43,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * A User may belong to a customer
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'user_id');
+    }
 }
