@@ -12,20 +12,6 @@
             <span class="d-sm-inline d-none">Logout</span>
           </a>
         </li>
-        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-            <div class="sidenav-toggler-inner">
-              <i class="sidenav-toggler-line bg-white"></i>
-              <i class="sidenav-toggler-line bg-white"></i>
-              <i class="sidenav-toggler-line bg-white"></i>
-            </div>
-          </a>
-        </li>
-        <li class="nav-item ps-3 d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-white p-0">
-            <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-          </a>
-        </li>
       </ul>
     </div>
   </div>
