@@ -2,6 +2,11 @@
 
 	'use strict';
 
+    $('.send-notification-form').submit(function(event){
+        event.preventDefault();
+        handleForm({form: $(this), button: 'send-notification-button', spinner: 'send-notification-spinner', message: 'send-notification-message'});
+    });
+
     $('.extend-subscription-form').submit(function(event){
         event.preventDefault();
         handleForm({form: $(this), button: 'extend-subscription-button', spinner: 'extend-subscription-spinner', message: 'extend-subscription-message'});

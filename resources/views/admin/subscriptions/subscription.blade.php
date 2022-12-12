@@ -96,15 +96,13 @@
               <div class="card-body">
                 <div class="alert alert-dark text-white mb-4">Notify Subscriber - Email or Sms</div>
                 <div class="row">
-                  <div class="col-12 col-md-6">
-                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark">Send Email</a>
-                  </div>
-                  <div class="col-12 col-md-6">
-                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark">Send Sms</a>
+                  <div class="col-12">
+                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark" data-bs-toggle="modal" data-bs-target="#send-notification">Notify (SMS or Email)</a>
                   </div>
                 </div>
               </div>
             </div>
+            @include('admin.notifications.partials.notify')
             <div class="card">
               <div class="card-header border-bottom">Edit Subscription Details</div>
               <div class="card-body">

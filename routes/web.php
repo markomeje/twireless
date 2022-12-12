@@ -85,6 +85,7 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
     Route::prefix('subscriptions')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'index'])->name('admin.subscriptions');
         Route::get('/subscription/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'subscription'])->name('admin.subscription');
+        
         Route::post('/add', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'add'])->name('admin.subscription.add');
         Route::post('/edit/{id}', [\App\Http\Controllers\Admin\SubscriptionsController::class, 'edit'])->name('admin.subscription.edit');
 
@@ -98,6 +99,11 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
     Route::prefix('payments')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\PaymentsController::class, 'index'])->name('admin.payments');
         Route::post('/add', [\App\Http\Controllers\Admin\PaymentsController::class, 'add'])->name('admin.payment.add');
+    });
+
+    Route::prefix('notifications')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\NotificationsController::class, 'index'])->name('admin.notifications');
+        Route::post('/send/{customer_id}', [\App\Http\Controllers\Admin\NotificationsController::class, 'send'])->name('admin.notification.send');
     });
 });
 

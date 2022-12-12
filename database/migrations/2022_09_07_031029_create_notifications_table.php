@@ -15,6 +15,11 @@ class CreateNotificationsTable extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->string('title')->nullable();
+            $table->test('body');
+            $table->foreignId('customer_id');
+            $table->boolean('sent')->default(false);
+            $table->string('type')->default('email');
             $table->timestamps();
         });
     }
