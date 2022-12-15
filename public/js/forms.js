@@ -12,6 +12,11 @@
         handleForm({form: $(this), button: 'extend-subscription-button', spinner: 'extend-subscription-spinner', message: 'extend-subscription-message'});
     });
 
+    $('.edit-subscription-form').submit(function(event){
+        event.preventDefault();
+        handleForm({form: $(this), button: 'edit-subscription-button', spinner: 'edit-subscription-spinner', message: 'edit-subscription-message'});
+    });
+
     $('.add-payment-form').submit(function(event){
         event.preventDefault();
         handleForm({form: $(this), button: 'add-payment-button', spinner: 'add-payment-spinner', message: 'add-payment-message'});

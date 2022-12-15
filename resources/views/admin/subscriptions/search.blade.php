@@ -9,7 +9,7 @@
       <div class="container-fluid py-4">
         <div class="alert alert-dark border-0 mb-4 d-flex align-items-center">
             <div class="text-white me-3">
-                ({{ $subscriptions->total() }}) Subscriptions
+                ({{ $subscriptions->total() }}) Subscriptions Found
             </div>
           <a href="javascript:;" class="text-underline text-white me-3" data-bs-toggle="modal" data-bs-target="#add-subscription">Add Subscription</a>
           <a href="javascript:;" class="text-white" data-bs-toggle="modal" data-bs-target="#search-subscription">Search</a>

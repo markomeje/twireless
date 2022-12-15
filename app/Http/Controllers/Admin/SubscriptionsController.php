@@ -222,6 +222,78 @@ class SubscriptionsController extends Controller
             ]);
         }
     }
+
+    public function search()
+    {
+        $query = request()->get('query');
+        $subscriptions = Subscription::search(['sector.name', 'expiry_date', 'last_mile', 'router', 'customer.contact_name', 'customer.company_name', 'concurrent_users', 'start_date'], $query)->paginate();
+        return view('admin.subscriptions.search')->with(['subscriptions' => $subscriptions, 'query' => $query]);
+    }
+
+    /**
+     * Activate Subscription
+     * 
+     * @return json
+     */
+    public function edit($id = 0)
+    {
+        $data = request()->all();
+        $validator = Validator::make($data, [ 
+            'antenna' => ['required'],
+            'polewire_length' => ['required'],
+            'coordinate' => ['required'],
+            'last_mile' => ['required'],
+            'concurrent_users' => ['required'],
+            'additional_info' => ['nullable', 'max:500'],
+            'sector' => ['required'],
+            'router' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        try {
+            $subscription = Subscription::find($id);
+            if (empty($subscription)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'Invalid subscription'
+                ]);
+            }
+
+            $subscription->antenna = $data['antenna'];
+            $subscription->polewire_length = $data['polewire_length'];
+            $subscription->coordinate = $data['coordinate'];
+            $subscription->last_mile = $data['last_mile'];
+            $subscription->concurrent_users = $data['concurrent_users'];
+            $subscription->additional_info = $data['additional_info'];
+            $subscription->sector_id = $data['sector'];
+            $subscription->router = $data['router'];
+
+            if ($subscription->update()) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Operation successful',
+                    'redirect' => ''
+                ]);
+            }
+
+            return response()->json([
+                'status' => 0,
+                'info' => 'Operation failed.',
+            ]);
+
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 0,
+                'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
+            ]);
+        }
+    }
 }
 
 

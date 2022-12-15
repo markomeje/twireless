@@ -4,24 +4,26 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\{Customer, Notification};
+use App\Mail\SubscriptionNotification;
 use Illuminate\Support\Str;
+use App\Library\Sms;
 use Exception;
 use Mail;
 use Validator;
-
 
 class NotificationsController extends Controller
 {
     /**
      * Admin notifications page view
+     * 
      */
     public function index($limit = 20)
     {
-        return view('admin.notifications.index', ['title' => 'T-Wireless | All Notifications', 'notifications' => Customer::latest('id')->paginate($limit)]);
+        return view('admin.notifications.index', ['title' => 'T-Wireless | All Notifications', 'notifications' => Notification::latest('id')->paginate($limit)]);
     }
 
     /**
-     * @param $request
+     * @param $customer_id
      * 
      * @return json
      */
@@ -31,7 +33,6 @@ class NotificationsController extends Controller
         $validator = Validator::make($data, [ 
             'type' => ['required', 'string'], 
             'body' => ['required', 'string'], 
-            'title' => ['required', 'string']
         ]);
 
         if ($validator->fails()) {
@@ -60,37 +61,56 @@ class NotificationsController extends Controller
 
             $user = $customer->user;
             $body = $data['body'];
-            if ($type === 'sms') {
-                $sent = empty($user->phone) ? false : \App\Library\Sms::send($user->phone, $body);
-            }else {
 
-            }
-
-            $notificaion = Notification::create([
+            $notification = Notification::create([
                 'type' => $type,
                 'customer_id' => $customer_id,
                 'sent' => false,
-                'body' => $body,
-                'title' => $data['title'] ?? null
+                'message' => $body
             ]);
 
-            $token = Str::random(64);
-            if (!empty($email)) {
-                $verify = Verification::create([
-                    'type' => 'email',
-                    'expiry' => now()->addDays(2),
-                    'user_id' => $user_id,
-                    'token' => $token,
+            if ($type === 'sms') {
+                if (empty($user->phone)) {
+                    return response()->json([
+                        'status' => 0,
+                        'info' => 'User email not found.'
+                    ]);
+                }
+
+                $sms = Sms::send([
+                    'phone' => $user->phone, 
+                    'message' => $body
                 ]);
 
-                $mail = new EmailVerification([
-                    'email' => $email, 
-                    'token' => $token,
-                ]);
+                if ($sms['status'] !== 1) {
+                    return response()->json([
+                        'status' => 0,
+                        'info' => $sms['info']
+                    ]);
+                }
 
-                Mail::to($email)->send($mail);
+                $notification->sent = true;
+                $notification->update();
+
+                return response()->json([
+                    'status' => 1,
+                    'info' => $sms['info'],
+                    'redirect' => ''
+                ]);
             }
 
+            if (empty($user->email)) {
+                return response()->json([
+                    'status' => 0,
+                    'info' => 'User email not found.'
+                ]);
+            }
+
+            $mail = new SubscriptionNotification([ 
+                'message' => $body,
+            ]);
+
+            Mail::to('markomejeonline@gmail.com')->send($mail);
             return response()->json([
                 'status' => 1,
                 'info' => 'Operation successful',

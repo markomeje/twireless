@@ -26,7 +26,8 @@ class Timing
 	public $duration = 0;
 
 
-	/**
+	    /**
+     * @return void
 	 */
 	public function __construct(int $duration, int $progress = 0, bool $expired = false, int $daysleft = 0)
 	{

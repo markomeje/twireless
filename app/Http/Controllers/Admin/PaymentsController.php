@@ -39,11 +39,12 @@ class PaymentsController extends Controller
         }
 
         try {
+            $product_id = $data['subscription_id'];
             $payment = Payment::create([
                 'type' => $data['type'],
                 'amount' => $data['amount'],
                 'customer_id' => $data['customer_id'],
-                'product_id' => $data['subscription_id'],
+                'product_id' => $product_id,
                 'reference' => Str::uuid(),
                 'status' => 'paid',
                 'product' => $data['product'],

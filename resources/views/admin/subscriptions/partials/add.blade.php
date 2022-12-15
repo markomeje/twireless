@@ -7,7 +7,6 @@
           <i class="icofont-close"></i>
         </button>
       </div>
-
       <form class="add-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.add') }}">
         @csrf
         <div class="modal-body">

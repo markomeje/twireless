@@ -12,7 +12,7 @@
         @else
           <?php $plan = $subscription->plan; $customer = $subscription->customer; $price = $plan === 'bundle' ? $subscription->bundle->price : $subscription->package->price ?>
           <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-7">
               <div class="alert alert-info border-0 mb-4 d-flex align-items-center justify-content-between">
                 <div class="text-white me-2">
                   {{ $customer->company_name ? ucwords($customer->company_name) : '' }} Subscription
@@ -20,7 +20,7 @@
               </div>
               <div class="card mb-4">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
-                  <div>
+                  <div class="text-dark">
                     @if($plan === 'bundle')
                       {{ $subscription->bundle->size }}Gb Bundle Plan 
                     @else
@@ -41,7 +41,6 @@
                     @include('admin.payments.partials.add')
                   @else
                     <div class="alert alert-dark mb-3 d-flex justify-content-between">
-                      
                       <div class="text-success">
                         {{ ucfirst($payment->status) }}
                       </div>
@@ -50,59 +49,49 @@
                       </div> 
                     </div>
                     <div class="">
-                      <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
-                      @if($status === 'active')
-                        <div class="mb-3 d-flex justify-content-between">
-                        
-                          <small class="text-dark">
-                            Started  {{ date('F j, Y', strtotime($subscription->start_date)) }}
-                          </small>
-                          <small class="text-dark">
-                            Expiring  {{ date('F j, Y', strtotime($subscription->expiry_date)) }}
-                          </small> 
-                        </div>
-                        <div class="p-2 border mb-3">
-                          <div class="progress" style="height: 10px;">
-                            <div class="progress-bar m-0"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="mb-4 d-flex justify-content-between">
-                          <small class="text-dark">
-                            {{ $timing->daysleft() }} Days Left
-                          </small>
-                          <small class="text-dark">
-                            {{ $timing->progress() }}% Progress
-                          </small>
-                        </div>
-                        <a class="btn btn-info d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend</a>
-                        @include('admin.subscriptions.partials.extend')
-                      @elseif($status === 'expired')
-                        <div class="">
-                          <a class="btn btn-info w-100">Renew</a>
-                        </div>
-                      @else
-                        <div class="">
-                          <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
-                            <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
-                            <span class="font-weight-bolder">Activate</span>
-                          </a>
-                        </div>
-                      @endif
+                        @if($status === 'initialized')
+                            <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
+                                <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
+                                <span class="font-weight-bolder">Activate</span>
+                            </a>
+                        @else
+                            <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
+                            <div class="mb-3 d-flex justify-content-between">
+                                <small class="text-dark">
+                                    Started  {{ date('F j, Y', strtotime($subscription->start_date)) }}
+                                </small>
+                                <small class="text-dark">
+                                    Expiring  {{ date('F j, Y', strtotime($subscription->expiry_date)) }}
+                                </small> 
+                            </div>
+                            <div class="p-2 border mb-3">
+                                <div class="progress" style="height: 10px;">
+                                    <div class="progress-bar m-0 bg-{{ $timing->progress() >= 90 ? 'danger' : 'success' }}"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3 d-flex justify-content-between">
+                                <small class="text-dark">
+                                    {{ $timing->daysleft() }} Days Left
+                                </small>
+                                <small class="text-dark">
+                                    {{ $timing->progress() }}% Progress
+                                </small>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mb-3">
+                                    <a href="javascript:;" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#send-notification">Send Notification</a>
+                                </div>
+                                <div class="col-12 col-md-6 mb-3">
+                                    <a class="btn btn-dark d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend Subscription</a>
+                                </div>
+                            </div>
+                            @include('admin.notifications.partials.notify')
+                            @include('admin.subscriptions.partials.extend')
+                        @endif
                     </div>
                   @endif
               </div>
             </div>
-            <div class="card mb-4">
-              <div class="card-body">
-                <div class="alert alert-dark text-white mb-4">Notify Subscriber - Email or Sms</div>
-                <div class="row">
-                  <div class="col-12">
-                    <a href="javascript:;" class="p-3 d-block border border-radius-lg w-100 text-dark" data-bs-toggle="modal" data-bs-target="#send-notification">Notify (SMS or Email)</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @include('admin.notifications.partials.notify')
             <div class="card">
               <div class="card-header border-bottom">Edit Subscription Details</div>
               <div class="card-body">
@@ -154,7 +143,7 @@
                   <div class="row">
                     <div class="form-group col-md-6">
                       <label class="text-muted">Concurrent Users</label>
-                      <input type="text" name="concurrent_users" class="form-control concurrent_users" placeholder="Enter Pole wire length" value="{{ $subscription->concurrent_users }}">
+                      <input type="text" name="concurrent_users" class="form-control concurrent_users" placeholder="Enter concurrent users" value="{{ $subscription->concurrent_users }}">
                       <small class="concurrent_users-error text-danger"></small>
                     </div>
                     <div class="form-group col-md-6">
