@@ -80,6 +80,8 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
         Route::get('/', [\App\Http\Controllers\Admin\SectorsController::class, 'index'])->name('admin.sectors');
         Route::post('/add', [\App\Http\Controllers\Admin\SectorsController::class, 'add'])->name('admin.sector.add');
         Route::get('/edit/{id}', [\App\Http\Controllers\Admin\SectorsController::class, 'edit'])->name('admin.sector.edit');
+
+        Route::get('/sector/{id}', [\App\Http\Controllers\Admin\SectorsController::class, 'sector'])->name('admin.sector');
     });
 
     Route::prefix('subscriptions')->group(function () {
