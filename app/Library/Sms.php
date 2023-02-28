@@ -30,33 +30,31 @@ class Sms
      */
 	public static function send(array $data = [])
 	{
-		if (empty($data['phone']) || empty($data['message'])) {
-			return response()->json([
+		if (empty($data['phones']) || empty($data['message'])) {
+			return [
                 'status' => 0,
-                'info' => 'Invalid request data.'
-            ]);
+                'info' => 'Invalid sms phone numbers or message.'
+            ];
 		}
 
 		$AT = (new AfricasTalking(env('AFRICASTALKING_API_USERNAME'), env('AFRICASTALKING_API_KEY')))->sms()->send([
-		    'to' => $data['phone'],
+		    'to' => ['08158212666', '08087752375'],
 		    'message' => $data['message'],
             'username' => 'sandbox'
 		]);
 
         $response = (array)$AT;
         if(empty($response['data']) || empty($response['status'])) {
-            return response()->json([
+            return [
                 'status' => 0,
                 'info' => 'Invalid response',
-            ]);
+            ];
         }
 
         $status = strtolower($response['status']);
         if ($status === 'success') {
             $data = $response['data'];
             $result = $data->SMSMessageData;
-
-            //dd($result['Recipients']);
 
             $message = $result->Message.' - '.self::$codes[$result->Recipients[0]->statusCode];
             return [

@@ -78,7 +78,7 @@ class NotificationsController extends Controller
                 }
 
                 $sms = Sms::send([
-                    'phone' => $user->phone, 
+                    'phones' => [$user->phone], 
                     'message' => $body
                 ]);
 
@@ -110,7 +110,7 @@ class NotificationsController extends Controller
                 'message' => $body,
             ]);
 
-            Mail::to('markomejeonline@gmail.com')->send($mail);
+            Mail::to($user->email)->send($mail);
             return response()->json([
                 'status' => 1,
                 'info' => 'Operation successful',

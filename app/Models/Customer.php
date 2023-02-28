@@ -50,7 +50,7 @@ class Customer extends Model
      */
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class, 'customer_id');
+        return $this->hasOne(Subscription::class, 'customer_id');
     }
 }
 

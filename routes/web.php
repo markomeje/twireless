@@ -58,6 +58,8 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
 Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(function() {
     Route::get('/', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
+    Route::post('/sms/send', [\App\Http\Controllers\Admin\SmsController::class, 'send'])->name('admin.sms.send');
+
     Route::prefix('customers')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\CustomersController::class, 'index'])->name('admin.customers');
         Route::post('/add', [\App\Http\Controllers\Admin\CustomersController::class, 'add'])->name('admin.customer.add');

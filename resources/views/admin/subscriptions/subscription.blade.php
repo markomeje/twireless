@@ -12,12 +12,23 @@
         @else
           <?php $plan = $subscription->plan; $customer = $subscription->customer; $price = $plan === 'bundle' ? $subscription->bundle->price : $subscription->package->price ?>
           <div class="row">
-            <div class="col-12 col-md-7">
-              <div class="alert alert-info border-0 mb-4 d-flex align-items-center justify-content-between">
-                <div class="text-white me-2">
-                  {{ $customer->company_name ? ucwords($customer->company_name) : '' }} Subscription
+            <div class="col-12 col-lg-7">
+              <div class="row">
+                <div class="col-12">
+                  <div class="alert alert-info border-0 mb-4">
+                    <div class="text-white me-2">
+                      {{ $customer->company_name ? ucwords($customer->company_name) : $customer->contact_name }} Subscription ({{ ucfirst($customer->designation) }})
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="alert alert-info border-0 mb-4 d-flex align-items-center">
+                    <a href="tel:{{ $customer->user->phone }}" class="text-white text-underline me-2">Call Here</a>
+                    <a href="javascript:;" class="text-white text-underline me-2">Send Sms</a>
+                  </div>
                 </div>
               </div>
+                  
               <div class="card mb-4">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                   <div class="text-dark">
