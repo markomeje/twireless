@@ -71,4 +71,69 @@ class PaymentsController extends Controller
         }
     }
 
+    /**
+     * 
+     * @return json
+     */
+    public function edit($id = 0)
+    {
+        $data = request()->all();
+        $validator = Validator::make($data, [ 
+            'amount' => ['required'],
+            'type' => ['required'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 0,
+                'error' => $validator->errors()
+            ]);
+        }
+
+        $payment = Payment::find($id);
+        if (empty($payment)) {
+            return response()->json([
+                'status' => 0,
+                'info' => 'Invalid Payment',
+            ]); 
+        }
+
+        try {
+            $payment->amount = $data['amount'];
+            $payment->type = $data['type'];
+
+            if ($payment->update()) {
+                return response()->json([
+                    'status' => 1,
+                    'info' => 'Operation successful',
+                    'redirect' => ''
+                ]); 
+            }
+
+            return response()->json([
+                'status' => 0,
+                'info' => 'Operation failed',
+            ]);
+
+        } catch (Exception $error) {
+            return response()->json([
+                'status' => 0,
+                'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
+            ]);
+        }
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,6 +2,11 @@
 
 	'use strict';
 
+    $('.edit-payment-form').submit(function(event){
+        event.preventDefault();
+        handleForm({form: $(this), button: 'edit-payment-button', spinner: 'edit-payment-spinner', message: 'edit-payment-message'});
+    });
+
     $('.send-sms-form').submit(function(event){
         event.preventDefault();
         handleForm({form: $(this), button: 'send-sms-button', spinner: 'send-sms-spinner', message: 'send-sms-message'});

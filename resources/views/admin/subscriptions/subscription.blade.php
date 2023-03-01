@@ -28,7 +28,6 @@
                   </div>
                 </div>
               </div>
-                  
               <div class="card mb-4">
                 <div class="card-header border-bottom d-flex align-items-center justify-content-between">
                   <div class="text-dark">
@@ -61,43 +60,43 @@
                     </div>
                     <div class="">
                         @if($status === 'initialized')
-                            <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
-                                <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
-                                <span class="font-weight-bolder">Activate</span>
-                            </a>
+                          <a href="javascript:;" class="btn btn-info w-100 activate-subscription" data-url="{{ route('admin.subscription.activate', ['id' => $subscription->id]) }}">
+                              <img src="/images/svgs/spinner.svg" class="me-2 d-none activate-subscription-spinner mb-1">
+                              <span class="font-weight-bolder">Activate</span>
+                          </a>
                         @else
-                            <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <small class="text-dark">
-                                    Started  {{ date('F j, Y', strtotime($subscription->start_date)) }}
-                                </small>
-                                <small class="text-dark">
-                                    Expiring  {{ date('F j, Y', strtotime($subscription->expiry_date)) }}
-                                </small> 
-                            </div>
-                            <div class="p-2 border mb-3">
-                                <div class="progress" style="height: 10px;">
-                                    <div class="progress-bar m-0 bg-{{ $timing->progress() >= 90 ? 'danger' : 'success' }}"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="mb-3 d-flex justify-content-between">
-                                <small class="text-dark">
-                                    {{ $timing->daysleft() }} Days Left
-                                </small>
-                                <small class="text-dark">
-                                    {{ $timing->progress() }}% Progress
-                                </small>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6 mb-3">
-                                    <a href="javascript:;" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#send-notification">Send Notification</a>
-                                </div>
-                                <div class="col-12 col-md-6 mb-3">
-                                    <a class="btn btn-dark d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend Subscription</a>
-                                </div>
-                            </div>
-                            @include('admin.notifications.partials.notify')
-                            @include('admin.subscriptions.partials.extend')
+                          <?php $status = strtolower($subscription->status); $timing = \App\Library\Timing::calculate($subscription->expiry_date, $subscription->start_date); ?>
+                          <div class="mb-3 d-flex justify-content-between">
+                            <small class="text-dark">
+                                Started  {{ date('F j, Y', strtotime($subscription->start_date)) }}
+                            </small>
+                            <small class="text-dark">
+                                Expiring  {{ date('F j, Y', strtotime($subscription->expiry_date)) }}
+                            </small> 
+                          </div>
+                          <div class="p-2 border mb-3">
+                              <div class="progress" style="height: 10px;">
+                                  <div class="progress-bar m-0 bg-{{ $timing->progress() >= 90 ? 'danger' : 'success' }}"  role="progressbar" style="width: {{ $timing->progress() }}%;" aria-valuenow="{{ $timing->progress() }}" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </div>
+                          <div class="mb-3 d-flex justify-content-between">
+                              <small class="text-dark">
+                                  {{ $timing->daysleft() }} Days Left
+                              </small>
+                              <small class="text-dark">
+                                  {{ $timing->progress() }}% Progress
+                              </small>
+                          </div>
+                          <div class="row">
+                              <div class="col-12 col-md-6 mb-3">
+                                  <a href="javascript:;" class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#send-notification">Send Notification</a>
+                              </div>
+                              <div class="col-12 col-md-6 mb-3">
+                                  <a class="btn btn-dark d-block w-100" data-bs-toggle="modal" data-bs-target="#extend-subscription">Extend Subscription</a>
+                              </div>
+                          </div>
+                          @include('admin.notifications.partials.notify')
+                          @include('admin.subscriptions.partials.extend')
                         @endif
                     </div>
                   @endif

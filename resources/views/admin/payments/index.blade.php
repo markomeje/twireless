@@ -23,6 +23,7 @@
                 <div class="col-12 col-md-4 col-xl-3 mb-4">
                   @include('admin.payments.partials.card')
                 </div>
+                @include('admin.payments.partials.edit')
               @endforeach
             </div>
             {{ $payments->links('vendor.pagination.default') }}

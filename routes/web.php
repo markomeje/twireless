@@ -34,8 +34,10 @@ Route::middleware(['web'])->domain(env('APP_URL'))->group(function() {
     Route::group(['prefix' => 'verify'], function () {
         Route::get('/phone/{reference}', [\App\Http\Controllers\VerifyController::class, 'phone'])->name('phone.verify');
         Route::post('/otp/{reference}', [\App\Http\Controllers\VerifyController::class, 'otpverify'])->name('otp.verify');
+
         Route::post('/resendotp/{reference}', [\App\Http\Controllers\VerifyController::class, 'resendotp'])->name('resend.otp');
         Route::get('/email/{token}', [\App\Http\Controllers\VerifyController::class, 'email'])->name('verify.email');
+
         Route::post('/resendtoken/{token}', [\App\Http\Controllers\VerifyController::class, 'resendtoken'])->name('token.resend');
         Route::get('/resent', [\App\Http\Controllers\VerifyController::class, 'resent'])->name('token.resent');
     });
@@ -104,7 +106,11 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
 
     Route::prefix('payments')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\PaymentsController::class, 'index'])->name('admin.payments');
+        Route::post('/record', [\App\Http\Controllers\Admin\PaymentsController::class, 'record'])->name('admin.payment.record');
+
         Route::post('/add', [\App\Http\Controllers\Admin\PaymentsController::class, 'add'])->name('admin.payment.add');
+
+        Route::post('/edit/{id}', [\App\Http\Controllers\Admin\PaymentsController::class, 'edit'])->name('admin.payment.edit');
     });
 
     Route::prefix('notifications')->group(function () {

@@ -34,6 +34,14 @@ class Payment extends Model
         'Bank Deposit',
         'Cash Payment',
     ];
+
+    /**
+     * A Payment must belong to a customer
+     */
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
 }
 
 
