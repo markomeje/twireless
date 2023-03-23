@@ -10,23 +10,20 @@
         <div class="">
           <div class="d-flex alert alert-dark border-0 mb-4 align-items-center">
             <div class="text-white me-3">
-              ({{ $packages->total() }}) Packages
+              ({{ $subscriptions->total() }}) Customer Subscriptions of {{ \App\Models\Package::find($id)->name }}
             </div>
-            <a href="javascript:;" class="text-underline text-white m-0" data-bs-toggle="modal" data-bs-target="#add-package">Add Package</a>
           </div>
-          @include('admin.packages.partials.add')
-          @if(empty($packages->count()))
-            <div class="alert alert-danger text-white">No packages yet</div>
+          @if(empty($subscriptions->count()))
+            <div class="alert alert-danger text-white">No subscriptions yet</div>
           @else
-            <div class="row mt-5">
-              @foreach($packages as $package)
-                <div class="col-12 col-md-4 col-lg-3 mb-4">
-                  @include('admin.packages.partials.card')
+            <div class="row">
+              @foreach($subscriptions as $subscription)
+                <div class="col-12 col-md-6 col-lg-4 mb-4">
+                  @include('admin.subscriptions.partials.card')
                 </div>
-                @include('admin.packages.partials.edit')
               @endforeach
             </div>
-            {{ $packages->links('vendor.pagination.default') }}
+            {{ $subscriptions->links('vendor.pagination.default') }}
           @endif
         </div>
     </main>

@@ -86,8 +86,6 @@ class SubscriptionsController extends Controller
                 'last_mile' => $data['last_mile'],
                 'coordinate' => $data['coordinate'],
                 'polewire_length' => $data['polewire_length'],
-                'subscribed_by' => auth()->id(),
-                'subscriber_type' => 'staff',
                 'active' => false,
                 'customer_id' => $data['customer'],
                 'router' => $data['router'],

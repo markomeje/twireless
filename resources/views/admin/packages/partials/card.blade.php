@@ -1,6 +1,9 @@
 <div class="card">
-	<div class="card-body">
-		<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
+	<div class="card-body position-relative">
+		<a href="{{ route('admin.package.subscriptions', ['id' => $package->id]) }}" class="position-absolute py-1 px-2 text-center rounded bg-dark" style="top: -15px; right: 50%;">
+			<small class="text-white">({{ $package->subscriptions->count() }}) Customers</small>
+		</a>
+		<div class="d-flex mt-2 align-items-center justify-content-between border-bottom mb-3 pb-3">
 			<div class="cursor-pointer text-underline" data-bs-toggle="modal" data-bs-target="#edit-package-{{ $package->id }}">
 				{{ ucwords(\Str::limit($package->name, 14)) }}
 			</div>

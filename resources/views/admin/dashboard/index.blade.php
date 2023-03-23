@@ -13,18 +13,23 @@
           </div>
           <div class="row">
             <div class="col-12 mb-4">
-              <div class="card z-index-2 border h-100">
-                <div class="card-header pb-0 pt-3 bg-transparent">
-                  <h6 class="">Payments Overview</h6>
-                  <p class="text-sm mb-0">
-                    NGN{{ number_format(34000) }}
-                  </p>
-                </div>
-                <div class="card-body p-3">
-                  <div class="chart">
-                    <canvas id="chart-line" class="chart-canvas" height="300"></canvas>
+              <div class="mb-5">
+                <?php $subscriptions = \App\Models\Subscription::where('expiry_date', '<', now()->subWeek())->where('status', '!=', 'initialized')->take(12)->get(); ?>
+                @if(empty($subscriptions->count()))
+                  <div class="alert alert-danger text-white">No Expiring Subscriptions</div>
+                @else
+                  <div class="alert alert-info text-white mb-4 d-flex justify-content-between">
+                    <div>Expiring Subscriptions</div>
+                    <a href="{{ route('admin.subscriptions') }}" class="text-white">View all</a>
                   </div>
-                </div>
+                  <div class="row">
+                    @foreach($subscriptions as $subscription)
+                      <div class="col-12 col-md-6 col-lg-4 mb-4">
+                        @include('admin.subscriptions.partials.card')
+                      </div>
+                    @endforeach
+                  </div>
+                @endif
               </div>
             </div>
           </div>

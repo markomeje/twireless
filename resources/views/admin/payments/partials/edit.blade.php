@@ -11,7 +11,7 @@
       <form class="edit-payment-form" action="javascript:;" method="post" data-action="{{ route('admin.payment.edit', ['id' => $payment->id]) }}">
         @csrf
         <div class="modal-body">
-          <div class="alert alert-info mb-4 text-white">
+          <div class="alert alert-info mb-3 text-white">
             By {{ ucwords($customer->contact_name) }}
           </div>
           <div class="row">

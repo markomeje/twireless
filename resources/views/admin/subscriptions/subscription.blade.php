@@ -15,16 +15,13 @@
             <div class="col-12 col-lg-7">
               <div class="row">
                 <div class="col-12">
-                  <div class="alert alert-info border-0 mb-4">
+                  <div class="alert alert-info border-0 mb-4 d-flex justify-content-between align-items-center">
                     <div class="text-white me-2">
                       {{ $customer->company_name ? ucwords($customer->company_name) : $customer->contact_name }} Subscription ({{ ucfirst($customer->designation) }})
                     </div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="alert alert-info border-0 mb-4 d-flex align-items-center">
-                    <a href="tel:{{ $customer->user->phone }}" class="text-white text-underline me-2">Call Here</a>
-                    <a href="javascript:;" class="text-white text-underline me-2">Send Sms</a>
+                    <a href="tel:{{ $customer->user->phone }}" class="text-white text-underline">
+                      <i class="fa fa-phone"></i>
+                    </a>
                   </div>
                 </div>
               </div>

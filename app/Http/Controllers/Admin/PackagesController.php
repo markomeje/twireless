@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-use App\Models\Package;
+use App\Models\{Package, Subscription};
 use Exception;
 use Validator;
 
@@ -72,6 +72,15 @@ class PackagesController extends Controller
                 'info' => config('app.env') === 'production' ? 'Unknown Error. Try Again.' : $error->getMessage()
             ]);
         }
+    }
+
+    /**
+     * @return view
+     */
+    public function subscriptions($id = 0)
+    {
+        $subscriptions = Subscription::where(['plan_id' => $id])->paginate(20);
+        return view('admin.packages.subscriptions', ['subscriptions' => $subscriptions, 'id' => $id]);
     }
 
     /**

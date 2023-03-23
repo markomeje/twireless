@@ -77,7 +77,10 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
     Route::prefix('packages')->group(function () {
         Route::get('/', [\App\Http\Controllers\Admin\PackagesController::class, 'index'])->name('admin.packages');
         Route::post('/add', [\App\Http\Controllers\Admin\PackagesController::class, 'add'])->name('admin.package.add');
+
         Route::post('/edit/{id}', [\App\Http\Controllers\Admin\PackagesController::class, 'edit'])->name('admin.package.edit');
+
+        Route::get('/package/{id}/subscriptions', [\App\Http\Controllers\Admin\PackagesController::class, 'subscriptions'])->name('admin.package.subscriptions');
     });
 
     Route::prefix('sectors')->group(function () {

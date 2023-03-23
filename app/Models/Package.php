@@ -32,4 +32,12 @@ class Package extends Model
         'weekly',
         'yearly',
     ];
+
+    /**
+     * A Package may have many subscriptions
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'plan_id');
+    }
 }
