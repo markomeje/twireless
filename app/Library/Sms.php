@@ -38,7 +38,7 @@ class Sms
 		}
 
 		$AT = (new AfricasTalking(env('AFRICASTALKING_API_USERNAME'), env('AFRICASTALKING_API_KEY')))->sms()->send([
-		    'to' => ['08158212666', '08087752375'],
+		    'to' => $data['phones'],
 		    'message' => $data['message'],
             'username' => 'sandbox'
 		]);

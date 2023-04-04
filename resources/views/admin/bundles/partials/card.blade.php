@@ -13,7 +13,7 @@
 				{{ $bundle->duration }} Days
 			</div>
 			<div class="">
-				{{ '0' }}
+				{{ 'Nill' }}
 			</div>
 		</div>
 	</div>
@@ -21,17 +21,17 @@
 		<div class="text-white">
 			{{ $bundle->created_at->diffForHumans() }}
 		</div>
-		<div class="d-flex align-items-center">
+		{{-- <div class="d-flex align-items-center">
 			<a href="" class="text-danger me-2">
 				<small class="">
 					<i class="icofont-trash"></i>
 				</small>
 			</a>
-			<a href="" class="text-warning">
+			<a href="javascript:;" class="text-warning">
 				<small class="">
 					<i class="icofont-edit"></i>
 				</small>
 			</a>
-		</div>
+		</div> --}}
 	</div>
 </div>
