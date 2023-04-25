@@ -7,7 +7,7 @@
           <i class="icofont-close"></i>
         </button>
       </div>
-      <form class="start-subscription-form" action="javascript:;" method="post" data-action="{{ route('admin.subscription.add') }}">
+      <form class="start-subscription-form" action="javascript:;" method="post" data-action="{{ route('customer.subscription.initialize') }}">
           @csrf
         <div class="modal-body">
           <div class="row">
@@ -17,7 +17,7 @@
                   <?php $packages = \App\Models\Package::all(); ?>
                   @if(!empty($packages->count()))
                     @foreach($packages as $package)
-                      <option value="{{ $package->id }}">
+                      <option value="{{ 'package_'.$package->id }}">
                           {{ $package->name.' Price(NGN'.number_format($package->price).') Setup Fee(NGN'.number_format($package->setup_fee).') for '.$package->duration.'days'}}
                       </option>
                     @endforeach

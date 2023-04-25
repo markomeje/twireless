@@ -124,7 +124,7 @@ Route::middleware(['web', 'auth', 'admin'])->domain(env('ADMIN_URL'))->group(fun
 
 Route::middleware(['web', 'auth', 'customer'])->domain(env('CUSTOMER_URL'))->group(function() {
     Route::get('/', [\App\Http\Controllers\Customer\DashboardController::class, 'index'])->name('customer.dashboard');
-    // Route::get('/profile', [\App\Http\Controllers\Customer\ProfileController::class, 'index'])->name('user.profile');
+    Route::post('/subscription/initialize', [\App\Http\Controllers\Customer\SubscriptionController::class, 'initialize'])->name('customer.subscription.initialize');
 });
 
 

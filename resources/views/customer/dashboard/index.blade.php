@@ -15,7 +15,7 @@
                         <div class="alert alert-info text-white border-0 mb-0">Hello, Welcome.</div>
                     </div>
                     <div class="col-12 col-md-8 col-lg-7 mb-4">
-                        <?php $subscriptions = empty($customer->subscriptions) ? [] : $customer->subscriptions; ?>
+                        <?php $subscriptions = empty($customer->subscriptions) ? null : $customer->subscriptions; ?>
                       <div class="card border-0">
                         <div class="card-header border-bottom d-flex justify-content-between">
                           <div class="">My Subscriptions</div>
